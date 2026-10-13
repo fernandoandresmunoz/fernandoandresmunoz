@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Falabella Tecno | Monitor de Ofertas · Descuentos en Chile</title>
+<meta name="description" content="Notebooks, smartphones, audio y tecnología con mayores descuentos reales.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag.js?id=G-CJRB34M9L8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CJRB34M9L8');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(900px 480px at 90% -10%,rgba(255,107,61,.09),transparent),radial-gradient(700px 380px at -5% 5%,rgba(82,225,155,.08),transparent)}
+.wrap{max-width:1260px;margin:auto;padding:0 20px}
+.hero{padding:44px 0 20px}
+.brand{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font:800 20px Fraunces,Georgia,serif}
+.brand b{color:var(--acc)}.brand em{font:500 14px Inter,sans-serif;color:var(--mute);font-style:normal}
+.brand small{font:500 12px Inter;color:var(--mute);border:1px solid var(--line);padding:5px 12px;border-radius:99px;background:var(--card)}
+h1{font:800 clamp(32px,5.5vw,64px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.035em;margin:32px 0 14px;max-width:880px}
+h1 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);font-size:16px;line-height:1.55;max-width:680px}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats div{font:800 28px Fraunces,serif}
+.stats span{display:block;font:500 11px Inter;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+
+/* Tabs Bar */
+.tabs-wrap{margin:28px auto 16px;display:flex;justify-content:center;width:100%}
+.tabs-scroll{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:0 auto;max-width:100%}
+@media (max-width:768px){.tabs-scroll{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}}
+.tabs-scroll::-webkit-scrollbar{height:5px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tab-btn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px Inter,sans-serif;cursor:pointer;transition:all .2s ease;text-decoration:none;user-select:none}
+.tab-btn:hover{border-color:var(--acc);transform:translateY(-1px);background:var(--hov)}
+.tab-btn.active{background:linear-gradient(135deg,rgba(255,107,61,.18),rgba(255,61,113,.15));border-color:var(--acc);color:var(--ink);box-shadow:0 0 18px -4px rgba(255,107,61,.4)}
+.tab-btn .t-icon{font-size:15px;line-height:1}
+.tab-btn .t-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:color-mix(in srgb,var(--mute) 24%,transparent);color:var(--mute);transition:all .2s}
+.tab-btn.active .t-badge{background:var(--acc);color:#fff}
+
+/* Sticky Filter Bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-block:1px solid var(--line);padding:12px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:11px 15px;border-radius:12px;font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+input{flex:1 1 240px}input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,107,61,.18)}
+.chips{margin-top:10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chip{flex:none;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:99px;font:500 13px Inter;display:flex;gap:7px;align-items:center;transition:all .15s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}.chip:hover{border-color:var(--acc)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.count{margin:22px 0 12px;color:var(--mute)}.count b{color:var(--ink)}
+
+/* Table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th{text-align:left;font:700 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:15px 16px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+th[data-k]{cursor:pointer}th[data-k]:hover,th.s{color:var(--acc)}
+.r{text-align:right}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{transition:background .15s}tbody tr:hover{background:var(--hov)}tbody tr:last-child td{border-bottom:0}
+.n{color:var(--mute);width:44px}
+.bk{display:flex;gap:14px;align-items:center}
+.mc{flex:none;width:44px;height:56px;border-radius:6px;overflow:hidden;background:var(--line);box-shadow:2px 4px 10px -2px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:18px}
+.mc img{width:100%;height:100%;object-fit:cover;display:block}
+.t{font:500 15px/1.25 Fraunces,serif;max-width:440px}
+.st{display:inline-flex;gap:7px;align-items:center;padding:5px 11px;border-radius:99px;background:color-mix(in srgb,var(--c) 16%,transparent);font:500 12px Inter;white-space:nowrap}
+.st i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.o{color:var(--mute);text-decoration:line-through;white-space:nowrap;font-size:13px}
+.p{font:800 17px Fraunces,serif;color:var(--pr);white-space:nowrap}
+.d{display:flex;align-items:center;gap:9px;min-width:130px}
+.d b{font:800 14px Fraunces,serif;width:48px;color:var(--acc2)}.d.hot b{color:var(--acc)}
+.d span{flex:1;height:8px;border-radius:9px;background:color-mix(in srgb,var(--mute) 26%,transparent);overflow:hidden}
+.d span i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc),#ff3d71)}
+.sv{color:var(--acc2);font-weight:600;white-space:nowrap}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:10px;font:700 12px Inter;white-space:nowrap;transition:all .15s}
+tr:hover .btn,.btn:hover{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.msg{text-align:center;padding:70px 20px;color:var(--mute);font:500 20px Fraunces,serif}.msg code{font:13px monospace;background:var(--hov);padding:3px 8px;border-radius:6px}
+.pager{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:36px 0 16px}
+.pager button{min-width:40px;height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px Inter;cursor:pointer;transition:all .15s}
+.pager button:hover:not(:disabled){border-color:var(--acc)}.pager button.on{background:linear-gradient(135deg,var(--acc),#ff3d71);border-color:transparent;color:var(--onacc);font-weight:700}
+.pager button:disabled{opacity:.35;cursor:default}.pager span{align-self:center;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 48px;color:var(--mute);font-size:13px;text-align:center}
+</style>
+<script type="application/ld+json" id="ld-books">{"@context":"https://schema.org","@type":"ItemList","name":"Falabella Tecno - Ofertas y Descuentos en Chile","numberOfItems":95,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Soporte Volante Gamer A11 Plegable Ajustable","offers":{"@type":"Offer","price":"99990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/154969720/soporte-volante-gamer-pxn-a11-plegable-ajustable/154969721"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Mini Impresora Térmica Portátil Gatito Bluetooth Azul","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/116280107/mini-impresora-termica-portatil-gatito-bluetooth-azul/116280108"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Mochila Para Notebook Up To 15.6 Xtech Xtb209 - Negra","offers":{"@type":"Offer","price":"9197","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/119352342/Mochila-Para-Notebook-Up-To-15.6-Xtech-Xtb209-Negra/119352343"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Set 6 en 1 Carcasa + Lamina + Grip para Nintendo Switch 2","offers":{"@type":"Offer","price":"8990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/150539695/set-6-en-1-carcasa-lamina-grip-para-nintendo-switch-2/150539696"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/823bc9924d2f.webp"}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Arnes Para Desmalesadora - Orilladora Profesional","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/128577067/Arnes-Para-Desmalesadora-Orilladora-Profesional/128577068"}}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Arnes Para Desmalesadora - Orilladora Profesional","offers":{"@type":"Offer","price":"19990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/128577077/Arnes-Para-Desmalesadora-Orilladora-Profesional/128577078"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1e1e92f6b78e.webp"}},{"@type":"ListItem","position":7,"item":{"@type":"Product","name":"PC DE ESCRITORIO I5 10400 2.9GHZ M.2 500G 4.0 16GB DE RAM DDR4.","offers":{"@type":"Offer","price":"548990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/151763869/pc-gamer-core-i5-10400-2-9ghz-16gb-de-ram-ddr4-grafica-asus-rx7600-8g-gabinete-con-vidrio-templado/151763870"}}},{"@type":"ListItem","position":8,"item":{"@type":"Product","name":"Impresora Térmica Portátil Mini","offers":{"@type":"Offer","price":"8490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/148762506/Impresora-Termica-Portatil-Mini-Bitbyte/148762508"}}},{"@type":"ListItem","position":9,"item":{"@type":"Product","name":"Audífono Bluetooth True Wireless TAT1138 Azul","offers":{"@type":"Offer","price":"10990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17256812/Aud%C3%ADfono-Bluetooth-True-Wireless-TAT1138-Azul-Philips/17256812"}}},{"@type":"ListItem","position":10,"item":{"@type":"Product","name":"Set 4 Ampolletas Smart Tp-Link Tapo Colores GU10 Wi-fi Google Alexa","offers":{"@type":"Offer","price":"19980","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/143808998/Set-4-Ampolletas-Smart-Tp-Link-Tapo-Colores-GU10-Wi-fi-Google-Alexa/143808999"}}},{"@type":"ListItem","position":11,"item":{"@type":"Product","name":"Aro Luz Led 26cm Con Trípode 2mts Fotografia Portatil","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/138249967/Aro-Luz-Led-26cm-Con-Tripode-2mts-Fotografia-Portatil/138249968"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/93d7baf699b1.webp"}},{"@type":"ListItem","position":12,"item":{"@type":"Product","name":"Soporte de Monitor Ajustable 17 a 32 Pulgadas Acero","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/883096957/Soportes-Db-Monitor-Grey-St/883096958"}}},{"@type":"ListItem","position":13,"item":{"@type":"Product","name":"Soporte Giratorio TV 70 \" Empotrado","offers":{"@type":"Offer","price":"21990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/122151065/soporte-giratorio-tv-70-empotrado/122151066"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/948f3fe76d60.webp"}},{"@type":"ListItem","position":14,"item":{"@type":"Product","name":"Puntero Laser Alta Potencia Largo Alcance Bateria","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/150914124/puntero-laser-alta-potencia-largo-alcance-bateria/150914125"}}},{"@type":"ListItem","position":15,"item":{"@type":"Product","name":"Papel Fotográfico Glossy 4r 10x15 230gr X 100 Hojas Sp Color Blanco","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145950845/Papel-Fotografico-Glossy-4r-10x15-230gr-X-100-Hojas-Sp-Color-Blanco/145950846"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/40b15ad6a99c.webp"}},{"@type":"ListItem","position":16,"item":{"@type":"Product","name":"Repetidor NEXXT PACK 2X MESH BOLT AX1800","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17471344/Pack-2X-Mesh-Boltax1800-Nexxt-Solutions/17471344"}}},{"@type":"ListItem","position":17,"item":{"@type":"Product","name":"Audífono Over-Ear Bluetooth Life Q30","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80149798/AUDIFONO-OVER-EAR-LIFE-Q30-NEG/80149798"}}},{"@type":"ListItem","position":18,"item":{"@type":"Product","name":"Papel Fotográfico Adhesivo Lee Centro 115grs Blanco","offers":{"@type":"Offer","price":"17990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/146058958/Papel-Fotografico-Adhesivo-Lee-Centro-115grs-Blanco/146058959"}}},{"@type":"ListItem","position":19,"item":{"@type":"Product","name":"Audífonos Airphones IPX4 Bluetooth con canc de ruido -AIR5ANC","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/133605821/Audifonos-Lenyes-Airphones-IPX4-Bluetooth-con-canc-de-ruido-AIR5ANC/133605822"}}},{"@type":"ListItem","position":20,"item":{"@type":"Product","name":"Trípode Profesional 1.75 Metros para Cámara/Celular LP661","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/143606398/Tripode-Profesional-175M-Aluminio-Ugreen/143606399"}}},{"@type":"ListItem","position":21,"item":{"@type":"Product","name":"Parlante Bluetooth Clip 5 Negro","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17188061/jbl-parlante-bluetooth-clip-5-negro/17188062"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/e9d18fd0119e.webp"}},{"@type":"ListItem","position":22,"item":{"@type":"Product","name":"Audífonos Air12 Bluetooth 5.4","offers":{"@type":"Offer","price":"21990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/146002654/Audifonos-Lenyes-Air12-Bluetooth-5.4/146002655"}}},{"@type":"ListItem","position":23,"item":{"@type":"Product","name":"Luz Led Noche de Plástico con Sensor","offers":{"@type":"Offer","price":"4290","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/131659544/luz-led-de-noche-con-sensor-bat/131659545"}}},{"@type":"ListItem","position":24,"item":{"@type":"Product","name":"Audífono Over-Ear Bluetooth Life Q20I","offers":{"@type":"Offer","price":"27990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80149797/AUDIFONO-OVER-EAR-LIFE-Q20I-NE/80149797"}}},{"@type":"ListItem","position":25,"item":{"@type":"Product","name":"100 Hojas Papel Para Sublimar A4 Papel Transfer Sublimación Color Blanco","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/146058954/100-Hojas-Papel-Para-Sublimar-A4-Papel-Transfer-Sublimacion-Color-Blanco/146058955"}}},{"@type":"ListItem","position":26,"item":{"@type":"Product","name":"Audifono Over Ear Space One Soundcore","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80149813/AUDIFONO-OVER-EAR-SPACE-ONE-AZ/80149816"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/0f4e9292c37d.webp"}},{"@type":"ListItem","position":27,"item":{"@type":"Product","name":"Estuche de carga 20W Nintendo Switch 2","offers":{"@type":"Offer","price":"35990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/152611990/estuche-de-carga-20w-nintendo-switch-2-belkin/152611991"}}},{"@type":"ListItem","position":28,"item":{"@type":"Product","name":"Micrófono De Solapa Inalambrico Doble Para iPhone Y Android","offers":{"@type":"Offer","price":"8990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/141497714/microfono-de-solapa-inalambrico-doble-para-iphone-y-android/141497715"}}},{"@type":"ListItem","position":29,"item":{"@type":"Product","name":"Base Cooler Notebook 2 Ventiladores Bw-c2v.","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/126100039/Base-Cooler-Notebook-2-Ventiladores-Bowmann-Bw-c2v./126100040"}}},{"@type":"ListItem","position":30,"item":{"@type":"Product","name":"Joystick Rematch Grand Prix Mario 2","offers":{"@type":"Offer","price":"27990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80652709/Joystick%20Rematch%20Grand%20Prix%20Mario%202%20PDP/80652709"}}},{"@type":"ListItem","position":31,"item":{"@type":"Product","name":"Camara Wifi Rotacion 360 HD Alarma Movimiento Microfono Integrado Pack 2","offers":{"@type":"Offer","price":"26990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/150932881/pacx2-camara-vision-nocturna-ip-wifi-hd-360-yoosee-motorizada/150932882"}}},{"@type":"ListItem","position":32,"item":{"@type":"Product","name":"Funda con Teclado Touchpad (mouse) iPad Pro 11 2018 - 2022","offers":{"@type":"Offer","price":"27990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/116363607/Funda-con-Teclado-Touchpad-(mouse)-iPad-Pro-11-2018-2022/116363608"}}},{"@type":"ListItem","position":33,"item":{"@type":"Product","name":"Audífono In-Ear Bluetooth Tws P40I","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80149795/AUDIFONO-TWS-P40I-NEGRO/80149795"}}},{"@type":"ListItem","position":34,"item":{"@type":"Product","name":"Ventilador Portátil","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17576416/Ventilador%20Port%C3%A1til%20Xtech/17576416"}}},{"@type":"ListItem","position":35,"item":{"@type":"Product","name":"Kit Maleta Bolso + 49 Accesorios Gopro Y Camaras Deportivas","offers":{"@type":"Offer","price":"74890","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/129903752/Kit-Maleta-Bolso-+-49-Accesorios-Gopro-Y-Camaras-Deportivas/129903753"}}},{"@type":"ListItem","position":36,"item":{"@type":"Product","name":"Pack 2 Microfonos Inalambrico Dual Para Iphone Y Android Negro","offers":{"@type":"Offer","price":"8990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/149061107/Pack-2-Microfonos-Inalambrico-Dual-Para-Iphone-Y-Android-Negro/149061108"}}},{"@type":"ListItem","position":37,"item":{"@type":"Product","name":"Parlante Bluetooth Acton III Negro","offers":{"@type":"Offer","price":"188990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17123294/Parlante-Bluetooth-Acton-Iii-Negro-Marshall/17123294"}}},{"@type":"ListItem","position":38,"item":{"@type":"Product","name":"Micrófono Inalámbrico K9 Dual Para Celular - Pack 2 Micrófonos Plug & Play","offers":{"@type":"Offer","price":"6490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/151965624/microfono-inalambrico-k9-dual-para-celular-pack-2-microfonos-plug-play/151965625"}}},{"@type":"ListItem","position":39,"item":{"@type":"Product","name":"Parlante Portatil Resistente al Agua","offers":{"@type":"Offer","price":"24990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/140018790/Parlante-Portatil-Santana-Energia-Bluetooth-5.3-Resistente-al-Agua/140018791"}}},{"@type":"ListItem","position":40,"item":{"@type":"Product","name":"Parlante Bluetooth Grip bt Violeta","offers":{"@type":"Offer","price":"47990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/149702046/JBL-Grip-bt-speaker-Purple/149702047"}}},{"@type":"ListItem","position":41,"item":{"@type":"Product","name":"Cámara Web VB-CAM-002 Full HD","offers":{"@type":"Offer","price":"82490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/138700302/Camara-Web-VB-CAM-002-Viewsonic-Full-HD/138700303"}}},{"@type":"ListItem","position":42,"item":{"@type":"Product","name":"Pack 2 Lámparas Led Wifi Inteligente Ambiental Mas Colores RGB-IC","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/149853999/Pack-2-Lamparas-Led-Wifi-Inteligente-Ambiental-Mas-Colores-RGB-IC/149854001"}}},{"@type":"ListItem","position":43,"item":{"@type":"Product","name":"Audifono Inalambricos Bluetooth Tactil Tws Bw-m19","offers":{"@type":"Offer","price":"6990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/134036229/Audifono-Inalambricos-Bluetooth-Tactil-Tws-Bowmann-Bw-m19/134036230"}}},{"@type":"ListItem","position":44,"item":{"@type":"Product","name":"Audífonos QZ900 Noise Cancellation","offers":{"@type":"Offer","price":"107992","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/133237452/Audifonos-Koss-QZ900-Noise-Cancellation/133237453"}}},{"@type":"ListItem","position":45,"item":{"@type":"Product","name":"Audífonos Over-Ear ANC Q20i a","offers":{"@type":"Offer","price":"27990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80704488/audifonos-over-ear-anc-q20i-a/80704497"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/eaffa9a26364.webp"}},{"@type":"ListItem","position":46,"item":{"@type":"Product","name":"Camara 5G Vision Nocturna Ip Wifi Hd 360° Yoosee Motorizada FIGOIMPORT","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/113274050/Camara-5G-Vision-Nocturna-Ip-Wifi-Hd-360%C2%B0-Yoosee-Motorizada/113274051"}}},{"@type":"ListItem","position":47,"item":{"@type":"Product","name":"Parlante Portátil Select 4 G Viole S/M","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80616018/parlante-portatil-select-4-g-viole-s-m-soundcore-by-anker/80704485"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/77ec37996445.webp"}},{"@type":"ListItem","position":48,"item":{"@type":"Product","name":"Parlante Acton III Crema","offers":{"@type":"Offer","price":"199990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/133327247/parlante-acton-iii-marshall-crema/133327248"}}},{"@type":"ListItem","position":49,"item":{"@type":"Product","name":"Lentes Vr Realidad Virtual 3D Universal Control Remoto Gamer","offers":{"@type":"Offer","price":"54990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/130404463/lentes-vr-realidad-virtual-3d-universal-control-remoto-gamer/130404464"}}},{"@type":"ListItem","position":50,"item":{"@type":"Product","name":"43\" Mini LED M70H 4K Vision AI Smart TV (2026)","offers":{"@type":"Offer","price":"239990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80768186/43-mini-led-m70h-4k-samsung-vision-ai-smart-tv-2026/80768186"}}},{"@type":"ListItem","position":51,"item":{"@type":"Product","name":"Audífonos Headphones LH61","offers":{"@type":"Offer","price":"21990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145961635/Audifonos-Headphones-Lenyes-LH61/145961636"}}},{"@type":"ListItem","position":52,"item":{"@type":"Product","name":"Parlante Bluetooth Portátil 80W IPX7 Resistente al Agua Boom 2","offers":{"@type":"Offer","price":"92990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/138781822/Soundcore-Altavoz-Bluetooth-Boom-2-Sonido-80w-Bassup-24h/138781823"}}},{"@type":"ListItem","position":53,"item":{"@type":"Product","name":"Convertidores Fibra Óptica Gigabit 101001000 Ethernet","offers":{"@type":"Offer","price":"14000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/152432567/convertidores-fibra-optica-gigabit-101001000-ethernet/152432568"}}},{"@type":"ListItem","position":54,"item":{"@type":"Product","name":"Microfono USB modelo C-1U","offers":{"@type":"Offer","price":"41990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/134984977/Microfono-USB-Behringer-modelo-C-1U/134984978"}}},{"@type":"ListItem","position":55,"item":{"@type":"Product","name":"Audífonos In Ear Agile Nova TWS 5.3 30H Bluetooth","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/154920782/audifonos-in-ear-tozo-agile-nova-tws-5-3-30h-bluetooth-negro/154920783"}}},{"@type":"ListItem","position":56,"item":{"@type":"Product","name":"Estuche de viaje para Nintendo Switch 2 Carbon","offers":{"@type":"Offer","price":"17990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145921799/estuche-de-viaje-para-nintendo-switch-2-carbon/145921800"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/e4cb65436796.webp"}},{"@type":"ListItem","position":57,"item":{"@type":"Product","name":"Audífonos Headphones LH81 Bluetooth","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145964015/Audifonos-Headphones-Lenyes-LH81-Bluetooth/145964016"}}},{"@type":"ListItem","position":58,"item":{"@type":"Product","name":"Gafas de Sol Inteligentes con Audio Inalámbrico Tecnología Estilo y Libertad Total","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/150874861/gafas-de-sol-inteligentes-con-audio-inalambrico-tecnologia-estilo-y-libertad-total/150874863"}}},{"@type":"ListItem","position":59,"item":{"@type":"Product","name":"Control Remoto It Tech Para Smart Tv Tcl Con Botones Netflix, Prime Video Y Youtube Negro","offers":{"@type":"Offer","price":"3990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/153981320/control-remoto-it-tech-para-smart-tv-tcl-con-botones-netflix-prime-video-y-youtube-negro/153981321"}}},{"@type":"ListItem","position":60,"item":{"@type":"Product","name":"Soporte para TV Fijo de 10” a 85” UNIVERSAL 100KG SBRUB759","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/149154603/Soporte-TV-10%E2%80%9D-a-85%E2%80%9D-UNIVERSAL-100KG-SBRUB759/149154604"}}},{"@type":"ListItem","position":61,"item":{"@type":"Product","name":"Funda Inteligente Para Samsung Galaxy Tab S9 Fe Rosado 10.9 X510","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/130737311/Funda-Inteligente-Para-Samsung-Galaxy-Tab-S9-Fe-Rosado-10.9-X510/130737312"}}},{"@type":"ListItem","position":62,"item":{"@type":"Product","name":"Soporte Proyector Anclaje al techo","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/110027436/soporte-proyector-anclaje-al-techo/110027438"}}},{"@type":"ListItem","position":63,"item":{"@type":"Product","name":"Galaxy Buds Core Blanco","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/153190407/galaxy-buds-core-blanco/153190408"}}},{"@type":"ListItem","position":64,"item":{"@type":"Product","name":"Audífono Estéreo con Micrófono incorporado Frozen","offers":{"@type":"Offer","price":"7990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/128356979/Audifono-Estereo-con-Microfono-incorporado-Disney-Frozen/128356980"}}},{"@type":"ListItem","position":65,"item":{"@type":"Product","name":"Audífonos Air81 Bluetooth 5.3","offers":{"@type":"Offer","price":"21990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145971305/Audifonos-Lenyes-Air81-Bluetooth-5.3/145971306"}}},{"@type":"ListItem","position":66,"item":{"@type":"Product","name":"Control Remoto Para Tv LG Control Universal Para Smart Tv","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/152123076/control-remoto-para-tv-lg-control-universal-para-smart-tv/152123077"}}},{"@type":"ListItem","position":67,"item":{"@type":"Product","name":"Parlante Bluetooth Rave 3 Ne","offers":{"@type":"Offer","price":"219990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80616044/Parlante%20Bluetooth%20Rave%203%20Ne%20Soundcore%20By%20Anker/80616044"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/68b16c725cce.webp"}},{"@type":"ListItem","position":68,"item":{"@type":"Product","name":"TRIPODE SELFIE 15M + SOPORTE PARA CAMARAS + OBTURADOR INALAMBRICO BT","offers":{"@type":"Offer","price":"21990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/138192216/TRIPODE-SELFIE-15M-+-SOPORTE-PARA-CAMARAS-+-OBTURADOR-INALAMBRICO-BT/138192217"}}},{"@type":"ListItem","position":69,"item":{"@type":"Product","name":"Funda Con Teclado Español Compatible con iPad 11 A16 2025","offers":{"@type":"Offer","price":"27990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/143206175/Funda-Para-iPad-11-A16-2025-+-Teclado-Touchpad-Espanol/143206176"}}},{"@type":"ListItem","position":70,"item":{"@type":"Product","name":"Soporte Magstand Benwis para iPad 10.9 y 11 Ajustable","offers":{"@type":"Offer","price":"48990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/146048031/soporte-magstand-benwis-para-ipad-10-9-y-11-ajustable/146048032"}}},{"@type":"ListItem","position":71,"item":{"@type":"Product","name":"Lamina Hidrogel Para Tablet Samsung Tab Activepro 10.1","offers":{"@type":"Offer","price":"8790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/137433875/Lamina-Hidrogel-Para-Tablet-Samsung-Tab-Activepro-10.1/137433876"}}},{"@type":"ListItem","position":72,"item":{"@type":"Product","name":"Lámina vidrio templado antireflejos para Nintendo Switch 2","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145921803/lamina-vidrio-templado-antireflejos-para-nintendo-switch-2/145921804"}}},{"@type":"ListItem","position":73,"item":{"@type":"Product","name":"55\" Micro RGB R85H 4K Vision AI Smart TV (2026) + Control por Voz","offers":{"@type":"Offer","price":"929990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80768188/55-micro-rgb-r85h-4k-samsung-vision-ai-smart-tv-2026-control-por-voz/80768188"}}},{"@type":"ListItem","position":74,"item":{"@type":"Product","name":"Kit Camara Wifi HB8 Lite Con Panel Solar 2K+","offers":{"@type":"Offer","price":"94990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/146757828/Kit-Camara-EZVIZ-Wifi-HB8-Lite-Con-Panel-Solar-2K+/146757829"}}},{"@type":"ListItem","position":75,"item":{"@type":"Product","name":"Audifono Over Ear Noise Cancelling Life Q30 Soundcore negro","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/142200412/audifono-over-ear-noise-cancelling-life-q30-soundcore-negro/142200413"}}},{"@type":"ListItem","position":76,"item":{"@type":"Product","name":"Cable Para Starlink Estándar V4 Gen3 De 30 Metros (100 Pies)","offers":{"@type":"Offer","price":"39900","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/141575168/cable-para-starlink-estandar-v4-gen3-de-30-metros-100-pies/141575169"}}},{"@type":"ListItem","position":77,"item":{"@type":"Product","name":"Internet Satelital Mini","offers":{"@type":"Offer","price":"139990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/141396957/starlink-mini-internet-satelital-de-alta-velocidad-y-baja-latencia-ideal-para-zonas-remotas/141396960"}}},{"@type":"ListItem","position":78,"item":{"@type":"Product","name":"Camara IP Exterior Seguridad WiFi 1080P Vision Nocturna Motorizada IP66 CCTV YOOSEE","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/151840232/camara-ip-exterior-seguridad-wifi-1080p-vision-nocturna-motorizada-ip66-cctv-yoosee/151840233"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/7d50d5f0e0ec.webp"}},{"@type":"ListItem","position":79,"item":{"@type":"Product","name":"83\" OLED S85H 4K Vision AI Smart TV 2026.","offers":{"@type":"Offer","price":"1999990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/153969076/83-oled-s85h-4k-samsung-vision-ai-smart-tv-2026/153969078"}}},{"@type":"ListItem","position":80,"item":{"@type":"Product","name":"Parlante Karaoke Portátil Lilo y Stitch","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/17436019/Parlante-Karaoke-Port%C3%A1til-Lilo-y-Stitch-Xtech/17436019"}}},{"@type":"ListItem","position":81,"item":{"@type":"Product","name":"Cámara Wifi Interior MC210 2K Audio Motorizada","offers":{"@type":"Offer","price":"19490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/154330898/camara-wifi-interior-mercusys-mc210-2k-audio-motorizada/154330899"}}},{"@type":"ListItem","position":82,"item":{"@type":"Product","name":"Audífonos Air98 Bluetooth 5.3","offers":{"@type":"Offer","price":"12990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/145992320/Audifonos-Lenyes-Air98-Bluetooth-5.3/145992321"}}},{"@type":"ListItem","position":83,"item":{"@type":"Product","name":"Protector de Pantalla para Cámara X4","offers":{"@type":"Offer","price":"15990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/139860839/Protector-de-Pantalla-para-Camara-Insta360-X4/139860840"}}},{"@type":"ListItem","position":84,"item":{"@type":"Product","name":"Kit 8 Cámaras Lite Smart Dual Light 4 Bala y 4 Domo","offers":{"@type":"Offer","price":"229990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/124091155/kit-8-camaras-hikvision-lite-smart-dual-light-4-bala-y-4-domo/124091156"}}},{"@type":"ListItem","position":85,"item":{"@type":"Product","name":"Papel Fotográfico Adhesivo Glossy A4 100 Hojas 120 Gr.","offers":{"@type":"Offer","price":"9790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/149092452/Papel-Fotografico-Adhesivo-Glossy-A4-100-Hojas-120-Gr/149092453"}}},{"@type":"ListItem","position":86,"item":{"@type":"Product","name":"Audífonos TWS ANC P41i Negro","offers":{"@type":"Offer","price":"44990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80704484/audifono-tws-anc-p41i-negro/80704484"}}},{"@type":"ListItem","position":87,"item":{"@type":"Product","name":"Audífonos TWS ANC Liberty 5 a","offers":{"@type":"Offer","price":"67990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80704487/audifonos-tws-anc-liberty-5-a/80704494"}}},{"@type":"ListItem","position":88,"item":{"@type":"Product","name":"Era 100 SL Wireless Speaker","offers":{"@type":"Offer","price":"149990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80725380/parlante-era-100-black/80725383"}}},{"@type":"ListItem","position":89,"item":{"@type":"Product","name":"50\" Mini LED M75H 4K Vision AI Smart TV (2026) + Control por Voz","offers":{"@type":"Offer","price":"279990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80799608/50-mini-led-m75h-4k-samsung-vision-ai-smart-tv-2026-control-por-voz/80799608"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f92ff07970da.webp"}},{"@type":"ListItem","position":90,"item":{"@type":"Product","name":"B-Series Soundbar HW-B650F 3.1 Subwoofer (2025)","offers":{"@type":"Offer","price":"139990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80598126/B-Series%20Soundbar%20HW-B650F%203.1%20Subwoofer%20(2025)%20Samsung/80598126"}}},{"@type":"ListItem","position":91,"item":{"@type":"Product","name":"75\" Crystal UHD U8500H 4K Vision AI Smart TV (2026) + Control por Voz","offers":{"@type":"Offer","price":"649990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/80799605/75-crystal-uhd-u8500h-4k-samsung-vision-ai-smart-tv-2026-control-por-voz/80799605"}}},{"@type":"ListItem","position":92,"item":{"@type":"Product","name":"CAMARA WIFI H6 3K","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/153176224/camara-wifi-h6-3k-ezviz/153176225"}}},{"@type":"ListItem","position":93,"item":{"@type":"Product","name":"Audífonos Spider-Man Estéreo con Micrófono incorporado","offers":{"@type":"Offer","price":"7990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/128356803/Audifonos-Spider-Man-Estereo-con-Microfono-incorporado-Marvel/128356804"}}},{"@type":"ListItem","position":94,"item":{"@type":"Product","name":"Abre Portón y Cerraduras Eléctrica Wifi + 2 Controles - 85 a 250 VAC","offers":{"@type":"Offer","price":"18990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/138486754/Abre-Porton-y-Cerraduras-Electrica-Wifi-+-2-Controles-85-a-250-VAC/138486755"}}},{"@type":"ListItem","position":95,"item":{"@type":"Product","name":"Parlante Grip Rosado","offers":{"@type":"Offer","price":"47990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Falabella"},"url":"https://www.falabella.com/falabella-cl/product/155818630/jbl-parlante-bluetooth-grip-rosado/155818631"}}}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><span>Páginas <b>&amp;</b> Precios <em>| Monitor de Ofertas</em></span><small id="upd">cargando…</small></div>
+  <h1 id="hero-title">Los mejores descuentos en Falabella Tecnología, <em>actualizados hoy.</em></h1>
+  <p class="lead" id="hero-desc">Notebooks, smartphones, audio y tecnología con mayores descuentos reales.</p>
+  <div class="stats">
+    <div id="s1">–<span>Ofertas</span></div>
+    <div id="s2">–<span>Tiendas</span></div>
+    <div id="s3">–<span>Descuento promedio</span></div>
+  </div>
+</header>
+</div>
+
+<nav class="tabs-wrap wrap" aria-label="Categorías y Tiendas">
+  <div class="tabs-scroll" id="tabs-nav"></div>
+</nav>
+
+<div class="bar"><div class="wrap">
+  <div class="row">
+    <input id="q" type="search" placeholder="Buscar..." aria-label="Buscar">
+    <select id="min" aria-label="Descuento mínimo"><option value="0">Cualquier descuento</option><option value="20">+20%</option><option value="40">+40%</option><option value="50">+50%</option><option value="70">+70%</option></select>
+    <select id="per" aria-label="Filas por página"><option>10</option><option selected>25</option><option>50</option><option value="1000">Todos</option></select>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <p class="count" id="count"></p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th data-k="title" id="col-item">Producto</th><th data-k="tienda">Tienda</th><th class="r" data-k="promedio">Precio normal</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th></th></tr></thead>
+    <tbody id="body"></tbody>
+  </table></div>
+  <nav class="pager" id="pager"></nav>
+</main>
+
+<footer class="wrap">© Páginas &amp; Precios · Monitoreo automático de ofertas en Chile. Los precios y disponibilidad son responsabilidad de cada tienda.</footer>
+
+<script>
+window.PAGE_DEFAULT_TAB = "falabella";
+const $ = id => document.getElementById(id),
+  clp = n => "$" + Math.round(n).toLocaleString("es-CL"),
+  esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const COLORS = ["#ff8a3d", "#4da3ff", "#6fe3a5", "#ff5d8f", "#b78cff", "#ffc857", "#20c997", "#fd7e14"];
+let TABS = [], currentTab = null, B = [], D = [], page = 1, store = -1, key = "descuento", dir = -1, maxD = 1;
+const tabCache = {};
+
+fetch("tabs.json", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(data => {
+    TABS = data.tabs || [];
+    renderTabsBar();
+    const hash = (location.hash || "").replace("#", "").trim();
+    const found = TABS.find(t => t.id === hash);
+    const initialId = found ? found.id : (TABS.find(t => t.id === window.PAGE_DEFAULT_TAB) || TABS[0])?.id;
+    if (initialId) switchTab(initialId, false);
+  })
+  .catch(() => {
+    // Fallback: intentar cargar libros.json directamente
+    fetch("libros.json", { cache: "no-cache" }).then(r => r.json()).then(j => {
+      initTabData({ id: "libros", name: "Libros", item_label: "Libro", headline: "Los mejores descuentos de libros en Chile", subtitle: "Librerías principales de Chile" }, j);
+    }).catch(() => {
+      $("upd").textContent = "sin datos";
+      $("body").innerHTML = `<tr><td colspan="8"><div class="msg">No pude leer los datos.<br><br>Genera las ofertas con <code>python3 script_generator.py</code>.</div></td></tr>`;
+    });
+  });
+
+function renderTabsBar() {
+  const nav = $("tabs-nav");
+  nav.innerHTML = TABS.map(t => `
+    <button class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" data-tab="${t.id}" id="tab-btn-${t.id}" type="button">
+      <span class="t-icon">${t.icon || "🏷️"}</span>
+      <span>${esc(t.name)}</span>
+      <span class="t-badge">${t.total || 0}</span>
+    </button>
+  `).join("");
+}
+
+$("tabs-nav").onclick = e => {
+  const btn = e.target.closest(".tab-btn");
+  if (!btn) return;
+  const tid = btn.dataset.tab;
+  if (tid) switchTab(tid, true);
+};
+
+window.addEventListener("hashchange", () => {
+  const hash = (location.hash || "").replace("#", "").trim();
+  if (hash && (!currentTab || currentTab.id !== hash)) {
+    switchTab(hash, false);
+  }
+});
+
+function switchTab(tabId, updateHash) {
+  const tab = TABS.find(t => t.id === tabId);
+  if (!tab) return;
+  currentTab = tab;
+  if (updateHash) {
+    history.replaceState(null, "", "#" + tabId);
+  }
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    const isAct = b.dataset.tab === tabId;
+    b.classList.toggle("active", isAct);
+    if (isAct) b.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+  });
+
+  // Actualizar hero y textos
+  $("hero-title").innerHTML = tab.headline || `Los mejores descuentos en ${esc(tab.name)}, <em>actualizados hoy.</em>`;
+  $("hero-desc").textContent = tab.subtitle || `Monitoreo de precios y descuentos en ${tab.name}.`;
+  $("col-item").textContent = tab.item_label || "Producto";
+  $("q").placeholder = `Buscar en ${tab.name}...`;
+
+  if (tabCache[tabId]) {
+    initTabData(tab, tabCache[tabId]);
+  } else {
+    $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Cargando ofertas de ${esc(tab.name)}…</div></td></tr>`;
+    fetch(tab.file || `${tabId}.json`, { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(j => {
+        tabCache[tabId] = j;
+        initTabData(tab, j);
+      })
+      .catch(err => {
+        $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Error al cargar datos de ${esc(tab.name)}.</div></td></tr>`;
+      });
+  }
+}
+
+const fixUrl = b => {
+  if (!b.url) return "";
+  if (/buscalibre/i.test(b.tienda) && !/^https?:/i.test(b.url)) {
+    return new URL(b.url, "https://www.buscalibre.cl/").href;
+  }
+  return b.url;
+};
+
+function initTabData(tab, j) {
+  D = j.dominios || [];
+  const items = j.items || j.libros || [];
+  B = items.map(b => ({ ...b, ahorro: (b.promedio || 0) - (b.precio || 0), url: fixUrl(b) }));
+  maxD = Math.max(...B.map(b => b.descuento || 0), 1);
+  if (j.generated_at) {
+    $("upd").textContent = "Actualizado " + new Date(j.generated_at).toLocaleString("es-CL", { dateStyle: "medium", timeStyle: "short" });
+  }
+  $("s1").firstChild.textContent = B.length;
+  $("s2").firstChild.textContent = D.length || 1;
+  $("s3").firstChild.textContent = Math.round(B.reduce((a, b) => a + (b.descuento || 0), 0) / Math.max(B.length, 1)) + "%";
+
+  // Chips de tiendas del tab
+  if (D.length > 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = [{ name: "Todas" }, ...D].map((d, i) =>
+      `<button class="chip${i ? "" : " on"}" data-i="${i ? d.id : -1}">${i ? `<i style="--c:${COLORS[(i - 1) % COLORS.length]}"></i>` : ""}${esc(d.name)}</button>`
+    ).join("");
+  } else if (D.length === 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = `<button class="chip on" data-i="${D[0].id}"><i style="--c:${COLORS[0]}"></i>${esc(D[0].name)}</button>`;
+  } else {
+    $("chips").style.display = "none";
+    $("chips").innerHTML = "";
+  }
+
+  page = 1;
+  store = -1;
+  render();
+}
+
+const col = id => {
+  const idx = D.findIndex(d => d.id === id);
+  return COLORS[Math.max(idx, 0) % COLORS.length];
+};
+
+$("chips").onclick = e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  store = +b.dataset.i;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+  page = 1;
+  render();
+};
+
+["q", "min", "per"].forEach(id => $(id).addEventListener("input", () => { page = 1; render(); }));
+
+document.querySelector("thead").onclick = e => {
+  const h = e.target.closest("th[data-k]");
+  if (!h) return;
+  const k = h.dataset.k;
+  dir = key === k ? -dir : (k === "title" || k === "tienda" || k === "precio" || k === "promedio" ? 1 : -1);
+  key = k;
+  page = 1;
+  render();
+};
+
+function render() {
+  const q = $("q").value.toLowerCase().trim(), m = +$("min").value, PER = +$("per").value;
+  const L = B.filter(b => (store < 0 || b.dominio_id === store) && b.descuento >= m && (!q || (b.title || "").toLowerCase().includes(q)));
+  L.sort((a, b) => (typeof a[key] === "string" ? a[key].localeCompare(b[key], "es") : a[key] - b[key]) * dir);
+  document.querySelectorAll("th[data-k]").forEach(h => {
+    h.dataset.l = h.dataset.l || h.textContent;
+    h.classList.toggle("s", h.dataset.k === key);
+    h.textContent = h.dataset.l + (h.dataset.k === key ? (dir > 0 ? " ↑" : " ↓") : "");
+  });
+  const pages = Math.max(1, Math.ceil(L.length / PER));
+  page = Math.min(page, pages);
+  const st = (page - 1) * PER;
+  $("count").innerHTML = `<b>${L.length}</b> ofertas · mostrando ${L.length ? st + 1 : 0}–${Math.min(st + PER, L.length)}`;
+
+  $("body").innerHTML = L.length ? L.slice(st, st + PER).map((b, i) => `<tr>
+    <td class="n">${st + i + 1}</td>
+    <td><div class="bk"><div class="mc">${b.thumbnail ? `<img src="${esc(b.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "📦"}</div><div class="t">${esc(b.title)}</div></div></td>
+    <td><span class="st" style="--c:${col(b.dominio_id)}"><i></i>${esc(b.tienda)}</span></td>
+    <td class="r o">${clp(b.promedio)}</td>
+    <td class="r p">${clp(b.precio)}</td>
+    <td><div class="d${b.descuento >= 45 ? " hot" : ""}"><b>−${Math.round(b.descuento)}%</b><span><i style="width:${b.descuento / maxD * 100}%"></i></span></div></td>
+    <td class="r sv">${clp(b.ahorro)}</td>
+    <td class="r">${b.url ? `<a class="btn" href="${esc(b.url)}" target="_blank" rel="noopener" data-id="${b.id}" data-pos="${st + i + 1}">Ir a la tienda ↗</a>` : ""}</td>
+  </tr>`).join("") : `<tr><td colspan="8"><div class="msg">Nada por aquí… prueba otra búsqueda 🔍</div></td></tr>`;
+
+  const bt = (l, p, x = "") => `<button ${x} data-p="${p}">${l}</button>`, a = [bt("←", page - 1, page === 1 ? "disabled" : "")];
+  const set = [...new Set([1, 2, page - 1, page, page + 1, pages - 1, pages])].filter(x => x >= 1 && x <= pages).sort((x, y) => x - y);
+  set.forEach((x, i) => {
+    if (i && x - set[i - 1] > 1) a.push("<span>…</span>");
+    a.push(bt(x, x, x === page ? 'class="on"' : ""));
+  });
+  a.push(bt("→", page + 1, page === pages ? "disabled" : ""));
+  $("pager").innerHTML = a.join("");
+}
+
+$("pager").onclick = e => {
+  const b = e.target.closest("button");
+  if (!b || b.disabled) return;
+  page = +b.dataset.p;
+  render();
+  $("count").scrollIntoView({ behavior: "smooth" });
+};
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.btn[data-id]");
+  if (!a || typeof gtag !== "function") return;
+  const b = B.find(x => String(x.id) === a.dataset.id);
+  if (!b) return;
+  gtag("event", "select_item", {
+    item_list_name: currentTab ? currentTab.name : "Ofertas",
+    currency: "CLP",
+    items: [{ item_id: String(b.id), item_name: b.title, item_brand: b.tienda, price: Math.round(b.precio), discount: Math.round(b.ahorro), index: +a.dataset.pos }]
+  });
+});
+</script>
+</body>
+</html>

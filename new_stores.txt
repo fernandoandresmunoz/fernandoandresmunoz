@@ -1,0 +1,26 @@
+paris : 
+
+http://onesource.cl/api/uploads/?domain=42&page_size=5
+
+# si el ultimo upload no esta dentr de las ultimas 24 o 48 descartar y no agregar a los tabs.
+
+http://onesource.cl/api/featured/?upload__id=137884&page_size=10&search=&ordering=variacion_promedio&variacion_precio_minimo=0
+
+# tab cic ( lo mismo ) 
+cic domain_id = 17 
+
+
+#falabella tecnologia http://onesource.cl/api/featured/?ordering=variacion_promedio&page=2&page_size=10&search=&upload__id=138179&variacion_promedio_lte=90
+
+# wei.cl
+# http://onesource.cl/api/featured/?upload__id=138052&page_size=10&search=&ordering=variacion_promedio
+
+labarra.cl:
+http://onesource.cl/api/featured/?upload__id=138258&page_size=10&search=&ordering=variacion_promedio
+
+jumbo:
+http://onesource.cl/api/featured/?upload__id=137923&page_size=10&search=&ordering=variacion_promedio
+
+automoviles:
+http://onesource.cl/api/featured/?upload__id=137885&page_size=10&search=&ordering=variacion_promedio
+

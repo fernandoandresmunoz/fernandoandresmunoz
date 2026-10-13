@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automóviles | Monitor de Ofertas · Descuentos en Chile</title>
+<meta name="description" content="Vehículos, autos usados y nuevos con mayor baja de precio.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag.js?id=G-CJRB34M9L8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CJRB34M9L8');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(900px 480px at 90% -10%,rgba(255,107,61,.09),transparent),radial-gradient(700px 380px at -5% 5%,rgba(82,225,155,.08),transparent)}
+.wrap{max-width:1260px;margin:auto;padding:0 20px}
+.hero{padding:44px 0 20px}
+.brand{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font:800 20px Fraunces,Georgia,serif}
+.brand b{color:var(--acc)}.brand em{font:500 14px Inter,sans-serif;color:var(--mute);font-style:normal}
+.brand small{font:500 12px Inter;color:var(--mute);border:1px solid var(--line);padding:5px 12px;border-radius:99px;background:var(--card)}
+h1{font:800 clamp(32px,5.5vw,64px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.035em;margin:32px 0 14px;max-width:880px}
+h1 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);font-size:16px;line-height:1.55;max-width:680px}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats div{font:800 28px Fraunces,serif}
+.stats span{display:block;font:500 11px Inter;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+
+/* Tabs Bar */
+.tabs-wrap{margin:28px auto 16px;display:flex;justify-content:center;width:100%}
+.tabs-scroll{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:0 auto;max-width:100%}
+@media (max-width:768px){.tabs-scroll{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}}
+.tabs-scroll::-webkit-scrollbar{height:5px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tab-btn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px Inter,sans-serif;cursor:pointer;transition:all .2s ease;text-decoration:none;user-select:none}
+.tab-btn:hover{border-color:var(--acc);transform:translateY(-1px);background:var(--hov)}
+.tab-btn.active{background:linear-gradient(135deg,rgba(255,107,61,.18),rgba(255,61,113,.15));border-color:var(--acc);color:var(--ink);box-shadow:0 0 18px -4px rgba(255,107,61,.4)}
+.tab-btn .t-icon{font-size:15px;line-height:1}
+.tab-btn .t-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:color-mix(in srgb,var(--mute) 24%,transparent);color:var(--mute);transition:all .2s}
+.tab-btn.active .t-badge{background:var(--acc);color:#fff}
+
+/* Sticky Filter Bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-block:1px solid var(--line);padding:12px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:11px 15px;border-radius:12px;font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+input{flex:1 1 240px}input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,107,61,.18)}
+.chips{margin-top:10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chip{flex:none;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:99px;font:500 13px Inter;display:flex;gap:7px;align-items:center;transition:all .15s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}.chip:hover{border-color:var(--acc)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.count{margin:22px 0 12px;color:var(--mute)}.count b{color:var(--ink)}
+
+/* Table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th{text-align:left;font:700 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:15px 16px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+th[data-k]{cursor:pointer}th[data-k]:hover,th.s{color:var(--acc)}
+.r{text-align:right}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{transition:background .15s}tbody tr:hover{background:var(--hov)}tbody tr:last-child td{border-bottom:0}
+.n{color:var(--mute);width:44px}
+.bk{display:flex;gap:14px;align-items:center}
+.mc{flex:none;width:44px;height:56px;border-radius:6px;overflow:hidden;background:var(--line);box-shadow:2px 4px 10px -2px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:18px}
+.mc img{width:100%;height:100%;object-fit:cover;display:block}
+.t{font:500 15px/1.25 Fraunces,serif;max-width:440px}
+.st{display:inline-flex;gap:7px;align-items:center;padding:5px 11px;border-radius:99px;background:color-mix(in srgb,var(--c) 16%,transparent);font:500 12px Inter;white-space:nowrap}
+.st i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.o{color:var(--mute);text-decoration:line-through;white-space:nowrap;font-size:13px}
+.p{font:800 17px Fraunces,serif;color:var(--pr);white-space:nowrap}
+.d{display:flex;align-items:center;gap:9px;min-width:130px}
+.d b{font:800 14px Fraunces,serif;width:48px;color:var(--acc2)}.d.hot b{color:var(--acc)}
+.d span{flex:1;height:8px;border-radius:9px;background:color-mix(in srgb,var(--mute) 26%,transparent);overflow:hidden}
+.d span i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc),#ff3d71)}
+.sv{color:var(--acc2);font-weight:600;white-space:nowrap}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:10px;font:700 12px Inter;white-space:nowrap;transition:all .15s}
+tr:hover .btn,.btn:hover{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.msg{text-align:center;padding:70px 20px;color:var(--mute);font:500 20px Fraunces,serif}.msg code{font:13px monospace;background:var(--hov);padding:3px 8px;border-radius:6px}
+.pager{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:36px 0 16px}
+.pager button{min-width:40px;height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px Inter;cursor:pointer;transition:all .15s}
+.pager button:hover:not(:disabled){border-color:var(--acc)}.pager button.on{background:linear-gradient(135deg,var(--acc),#ff3d71);border-color:transparent;color:var(--onacc);font-weight:700}
+.pager button:disabled{opacity:.35;cursor:default}.pager span{align-self:center;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 48px;color:var(--mute);font-size:13px;text-align:center}
+</style>
+<script type="application/ld+json" id="ld-books">{"@context":"https://schema.org","@type":"ItemList","name":"Automóviles - Ofertas y Descuentos en Chile","numberOfItems":100,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"LiefengUF1500ZHVF1500ZH","offers":{"@type":"Offer","price":"2498000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/liefeng-uf1500zh-2025-metropolitana-de-santiago-cod76988115.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/3f8d5586eae2.webp"}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"VolvoXC60T8RAwdRecharge","offers":{"@type":"Offer","price":"29998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/volvo-xc60-2020-metropolitana-de-santiago-cod76359490.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/c865c4e47357.webp"}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"SsangyongActyon2.0","offers":{"@type":"Offer","price":"4100000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ssangyong-actyon-2009-metropolitana-de-santiago-cod77077141.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/4fdf5c4af67f.webp"}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Peugeot20081.2PURETECH110HPAUTO","offers":{"@type":"Offer","price":"8290000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/peugeot-2008-2019-metropolitana-de-santiago-cod76239014.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/5f51467c5306.webp"}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"LandRoverRangeRoverSPORT3.0V6SEAUTO4WD","offers":{"@type":"Offer","price":"33890000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/land-rover-range-rover-2019-metropolitana-de-santiago-cod76296411.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/b7ed71b6a920.webp"}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"JeepGrandCherokee3.6LIMITEDLX4X4AT5P","offers":{"@type":"Offer","price":"18990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jeep-grand-cherokee-2018-metropolitana-de-santiago-cod76679041.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/6efeaf57931a.webp"}},{"@type":"ListItem","position":7,"item":{"@type":"Product","name":"AudiA1SPORTBACK30TFSISPORT","offers":{"@type":"Offer","price":"18990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-a1-2024-metropolitana-de-santiago-cod77058519.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/9c0bb7f9264d.webp"}},{"@type":"ListItem","position":8,"item":{"@type":"Product","name":"NissanNavara2.3DPRO4X4X4DOB.CAB.A","offers":{"@type":"Offer","price":"23490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-navara-2022-metropolitana-de-santiago-cod76952524.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/efe5d26bf7a1.webp"}},{"@type":"ListItem","position":9,"item":{"@type":"Product","name":"AudiQ8Q855TFSISport","offers":{"@type":"Offer","price":"48590000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-q8-2023-metropolitana-de-santiago-cod76603653.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/4ea78850523c.webp"}},{"@type":"ListItem","position":10,"item":{"@type":"Product","name":"ChevroletCaptiva1.5TPREMIERFWDMT5P","offers":{"@type":"Offer","price":"10890000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-captiva-2020-metropolitana-de-santiago-cod76962953.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1eab9d1aae81.webp"}},{"@type":"ListItem","position":11,"item":{"@type":"Product","name":"NissanPathfinderAdvance3.5.","offers":{"@type":"Offer","price":"14998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-pathfinder-2021-metropolitana-de-santiago-cod77313928.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/0d82543c4bdd.webp"}},{"@type":"ListItem","position":12,"item":{"@type":"Product","name":"ChevroletSilverado5.3LTZ4WDCCDOBCABAT","offers":{"@type":"Offer","price":"24990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-silverado-2019-metropolitana-de-santiago-cod76013403.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/0e3d5cb77bce.webp"}},{"@type":"ListItem","position":13,"item":{"@type":"Product","name":"CFMotoCF8005","offers":{"@type":"Offer","price":"5850000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/cf-moto-cf800-2023-metropolitana-de-santiago-cod76929043.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/469e000dfc49.webp"}},{"@type":"ListItem","position":14,"item":{"@type":"Product","name":"TriumphTiger900GT","offers":{"@type":"Offer","price":"9900000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/triumph-tiger-2023-metropolitana-de-santiago-cod76746643.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/df08d0eba56e.webp"}},{"@type":"ListItem","position":15,"item":{"@type":"Product","name":"MaxusT60DX4x42.8","offers":{"@type":"Offer","price":"8990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/maxus-t60-2022-metropolitana-de-santiago-cod77078997.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/017f75f26473.webp"}},{"@type":"ListItem","position":16,"item":{"@type":"Product","name":"BMWX5M4.4","offers":{"@type":"Offer","price":"23500000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/bmw-x5-2013-metropolitana-de-santiago-cod75555753.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/a15b7507acea.webp"}},{"@type":"ListItem","position":17,"item":{"@type":"Product","name":"SkodaYeti1.2TSIELEGANCEDSG","offers":{"@type":"Offer","price":"8990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/skoda-yeti-2016-metropolitana-de-santiago-cod77396576.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f1bad3e84a7d.webp"}},{"@type":"ListItem","position":18,"item":{"@type":"Product","name":"FordF-150PLATINUM4x43.5","offers":{"@type":"Offer","price":"42800000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ford-f-150-2024-metropolitana-de-santiago-cod77089990.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/ad094603d804.webp"}},{"@type":"ListItem","position":19,"item":{"@type":"Product","name":"SkodaKaroqMT","offers":{"@type":"Offer","price":"11990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/skoda-karoq-2019-metropolitana-de-santiago-cod71122040.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/c487f1661dc4.webp"}},{"@type":"ListItem","position":20,"item":{"@type":"Product","name":"JeepRenegade1.8SPORTLXMT","offers":{"@type":"Offer","price":"9490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jeep-renegade-2019-antofagasta-cod77450418.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/ca6f7686d92e.webp"}},{"@type":"ListItem","position":21,"item":{"@type":"Product","name":"Ram1500LARAMIE4X4","offers":{"@type":"Offer","price":"25970000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ram-1500-2019-metropolitana-de-santiago-cod77355602.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/ed4d2dad449a.webp"}},{"@type":"ListItem","position":22,"item":{"@type":"Product","name":"MGMG31.5","offers":{"@type":"Offer","price":"6490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mg-mg3-2022-metropolitana-de-santiago-cod77312676.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/e7614906045a.webp"}},{"@type":"ListItem","position":23,"item":{"@type":"Product","name":"JetourX701.5","offers":{"@type":"Offer","price":"8990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jetour-x70-2022-metropolitana-de-santiago-cod77158122.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2ff7a18030be.webp"}},{"@type":"ListItem","position":24,"item":{"@type":"Product","name":"FordEdgeSEL2.04x2","offers":{"@type":"Offer","price":"6998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ford-edge-2014-metropolitana-de-santiago-cod77420341.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/cad1621e4ed7.webp"}},{"@type":"ListItem","position":25,"item":{"@type":"Product","name":"VolkswagenAmarokHIHGLINETDI4X42.0","offers":{"@type":"Offer","price":"8390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/volkswagen-amarok-2012-metropolitana-de-santiago-cod77145234.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/0d64489a0b17.webp"}},{"@type":"ListItem","position":26,"item":{"@type":"Product","name":"CheryTiggo2.0TGDIGLXPROMAXAWD","offers":{"@type":"Offer","price":"19190000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chery-tiggo-2024-metropolitana-de-santiago-cod77056639.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/d38d4f99cb78.webp"}},{"@type":"ListItem","position":27,"item":{"@type":"Product","name":"ToyotaHiluxDX4X22.4","offers":{"@type":"Offer","price":"14850000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/toyota-hilux-2023-metropolitana-de-santiago-cod77364739.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2dbb3c4075a5.webp"}},{"@type":"ListItem","position":28,"item":{"@type":"Product","name":"InfinitiQX30QX301.6Titronic","offers":{"@type":"Offer","price":"11998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/infiniti-qx30-2018-metropolitana-de-santiago-cod77062576.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/973efc25e382.webp"}},{"@type":"ListItem","position":29,"item":{"@type":"Product","name":"MaxusT902.0TURBO","offers":{"@type":"Offer","price":"19470000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/maxus-t90-2024-metropolitana-de-santiago-cod77429708.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/dbbf70db511e.webp"}},{"@type":"ListItem","position":30,"item":{"@type":"Product","name":"VolkswagenAmarokPOWER2.0","offers":{"@type":"Offer","price":"7950000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/volkswagen-amarok-2011-metropolitana-de-santiago-cod77029904.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/44cd2d32121e.webp"}},{"@type":"ListItem","position":31,"item":{"@type":"Product","name":"SsangyongActyonSport","offers":{"@type":"Offer","price":"3200000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ssangyong-actyon-2008-metropolitana-de-santiago-cod77464122.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/69ceb19f2942.webp"}},{"@type":"ListItem","position":32,"item":{"@type":"Product","name":"DodgeDurango4.7","offers":{"@type":"Offer","price":"6498000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/dodge-durango-2006-metropolitana-de-santiago-cod77332482.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/68c61a982941.webp"}},{"@type":"ListItem","position":33,"item":{"@type":"Product","name":"NissanXTrailSense2.54x4","offers":{"@type":"Offer","price":"7998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-x-trail-2017-metropolitana-de-santiago-cod77276869.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/77212c9e4826.webp"}},{"@type":"ListItem","position":34,"item":{"@type":"Product","name":"FordEscape2.54X2.","offers":{"@type":"Offer","price":"5998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ford-escape-2013-metropolitana-de-santiago-cod77349265.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/65e8d8592898.webp"}},{"@type":"ListItem","position":35,"item":{"@type":"Product","name":"SubaruOutback2.5AWD","offers":{"@type":"Offer","price":"4998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/subaru-outback-2007-metropolitana-de-santiago-cod77313936.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f0cd1827e98a.webp"}},{"@type":"ListItem","position":36,"item":{"@type":"Product","name":"ToyotaRav42.0LE4X2CVTAT5P","offers":{"@type":"Offer","price":"20590000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/toyota-rav-4-2025-metropolitana-de-santiago-cod77413653.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/411b0356361a.webp"}},{"@type":"ListItem","position":37,"item":{"@type":"Product","name":"BMW320D2.0Autom.-","offers":{"@type":"Offer","price":"24998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/bmw-320d-2022-metropolitana-de-santiago-cod77286731.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2f09664627aa.webp"}},{"@type":"ListItem","position":38,"item":{"@type":"Product","name":"MaxusT60GLX2.04x4","offers":{"@type":"Offer","price":"14990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/maxus-t60-2022-metropolitana-de-santiago-cod77298651.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2648b2e80118.webp"}},{"@type":"ListItem","position":39,"item":{"@type":"Product","name":"NissanXTrail2.5.4x4","offers":{"@type":"Offer","price":"9998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-x-trail-2015-metropolitana-de-santiago-cod77313932.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/797804485e09.webp"}},{"@type":"ListItem","position":40,"item":{"@type":"Product","name":"VolvoXC602.0D5MOMENTUMAUTO4WD","offers":{"@type":"Offer","price":"25990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/volvo-xc60-2018-metropolitana-de-santiago-cod76985158.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/94da34d4087f.webp"}},{"@type":"ListItem","position":41,"item":{"@type":"Product","name":"NissanXTrail2.5ADVANCEMC4X2CVTAT","offers":{"@type":"Offer","price":"21890000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-x-trail-2023-metropolitana-de-santiago-cod77026045.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/6fa6ae2ba97d.webp"}},{"@type":"ListItem","position":42,"item":{"@type":"Product","name":"MaxusT904X4E6AT","offers":{"@type":"Offer","price":"18998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/maxus-t90-2024-metropolitana-de-santiago-cod77411062.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/3594455c7b87.webp"}},{"@type":"ListItem","position":43,"item":{"@type":"Product","name":"Mercedes-BenzGLE2.1","offers":{"@type":"Offer","price":"19998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-gle-2016-metropolitana-de-santiago-cod77373242.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/b553d8cb9913.webp"}},{"@type":"ListItem","position":44,"item":{"@type":"Product","name":"MitsubishiOutlander2.04X2MT5P","offers":{"@type":"Offer","price":"12490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mitsubishi-outlander-2021-metropolitana-de-santiago-cod77356281.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/aa4757d742e9.webp"}},{"@type":"ListItem","position":45,"item":{"@type":"Product","name":"CheryTiggo2.0TGDIGLXPROMAXAWD","offers":{"@type":"Offer","price":"20190000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chery-tiggo-2024-metropolitana-de-santiago-cod77056562.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/91cbefe775d0.webp"}},{"@type":"ListItem","position":46,"item":{"@type":"Product","name":"MazdaCX-60PREMIUMSPORT4X43.3","offers":{"@type":"Offer","price":"35990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mazda-cx-60-2023-metropolitana-de-santiago-cod77068897.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1b2e02ee2c1f.webp"}},{"@type":"ListItem","position":47,"item":{"@type":"Product","name":"CheryTiggo2.0TGDIGLXPROMAXAWD","offers":{"@type":"Offer","price":"20190000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chery-tiggo-2024-metropolitana-de-santiago-cod77041766.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/ae6603546aa7.webp"}},{"@type":"ListItem","position":48,"item":{"@type":"Product","name":"AudiQ335TFSI1.4T","offers":{"@type":"Offer","price":"27990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-q3-2023-metropolitana-de-santiago-cod76915564.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/https://imgb2bautos.ecn.cl/resource/public/imagen/audi-q3-2023-id-XJ6OOphgFfo-86NbsqsDDDh7G_D2H_IbGB_smg-mqJFCXxoMSo.jpg?size=190"}},{"@type":"ListItem","position":49,"item":{"@type":"Product","name":"BYDDolphin4X2AT5P","offers":{"@type":"Offer","price":"17690000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/byd-dolphin-2025-metropolitana-de-santiago-cod77142840.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/bf426a9172f5.webp"}},{"@type":"ListItem","position":50,"item":{"@type":"Product","name":"Mercedes-BenzGLC2502.04WDAT5P","offers":{"@type":"Offer","price":"21990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-glc-250-2017-metropolitana-de-santiago-cod77420172.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1bffde305601.webp"}},{"@type":"ListItem","position":51,"item":{"@type":"Product","name":"SkodaKodiaqNEW1.5MHEVSELECTIONAU","offers":{"@type":"Offer","price":"27990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/skoda-kodiaq-2025-metropolitana-de-santiago-cod77043718.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/8e016dcb6470.webp"}},{"@type":"ListItem","position":52,"item":{"@type":"Product","name":"CheryTiggo2.0TGDIGLXPROMAXAWD","offers":{"@type":"Offer","price":"20390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chery-tiggo-2024-antofagasta-cod77072581.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f569a0305706.webp"}},{"@type":"ListItem","position":53,"item":{"@type":"Product","name":"ChevroletSilveradoCCDCAB4X45.3","offers":{"@type":"Offer","price":"35190000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-silverado-2020-metropolitana-de-santiago-cod77002275.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/da4ee330bf94.webp"}},{"@type":"ListItem","position":54,"item":{"@type":"Product","name":"JeepGrandCherokeeLimited4x43.6","offers":{"@type":"Offer","price":"17998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jeep-grand-cherokee-2018-metropolitana-de-santiago-cod77405870.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/b2cc07e23cd5.webp"}},{"@type":"ListItem","position":55,"item":{"@type":"Product","name":"Mercedes-BenzMLML350","offers":{"@type":"Offer","price":"8290000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-ml-2008-metropolitana-de-santiago-cod77115337.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/484a08e96f04.webp"}},{"@type":"ListItem","position":56,"item":{"@type":"Product","name":"MaxusT60Dx4x42.8","offers":{"@type":"Offer","price":"8990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/maxus-t60-2022-metropolitana-de-santiago-cod77156096.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/3df7bad35cc0.webp"}},{"@type":"ListItem","position":57,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77466948.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/36730c8787c4.webp"}},{"@type":"ListItem","position":58,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77467002.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/e2599a6369b1.webp"}},{"@type":"ListItem","position":59,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77470451.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/c582aefdb6e3.webp"}},{"@type":"ListItem","position":60,"item":{"@type":"Product","name":"LandRoverRangeRover2.0","offers":{"@type":"Offer","price":"25998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/land-rover-range-rover-2018-metropolitana-de-santiago-cod77302920.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/b5e9b127f6be.webp"}},{"@type":"ListItem","position":61,"item":{"@type":"Product","name":"Mercedes-BenzC634.0V8BITURBO","offers":{"@type":"Offer","price":"49970000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-c63-2019-metropolitana-de-santiago-cod77195537.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/45138b277a24.webp"}},{"@type":"ListItem","position":62,"item":{"@type":"Product","name":"JeepRenegade1.8SPORT4X2MT5P","offers":{"@type":"Offer","price":"10990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jeep-renegade-2022-metropolitana-de-santiago-cod77321051.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/50e113a33a1f.webp"}},{"@type":"ListItem","position":63,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77467955.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2cced64af16e.webp"}},{"@type":"ListItem","position":64,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77468008.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1a089c837c02.webp"}},{"@type":"ListItem","position":65,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77467983.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/53e5b57c7718.webp"}},{"@type":"ListItem","position":66,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77473207.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/e94dca8619e8.webp"}},{"@type":"ListItem","position":67,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77473233.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/bd0ca1e03fd2.webp"}},{"@type":"ListItem","position":68,"item":{"@type":"Product","name":"ToyotaRav42.0STANDARD4X2AT5P","offers":{"@type":"Offer","price":"13990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/toyota-rav-4-2019-metropolitana-de-santiago-cod77374187.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/836f249a464c.webp"}},{"@type":"ListItem","position":69,"item":{"@type":"Product","name":"SubaruXVDYNAMICAWDCVT2.0I","offers":{"@type":"Offer","price":"9990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/subaru-xv-2015-metropolitana-de-santiago-cod77381586.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/c1b4e9c2eca8.webp"}},{"@type":"ListItem","position":70,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77470477.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/94e66e05cbd6.webp"}},{"@type":"ListItem","position":71,"item":{"@type":"Product","name":"BMWX12.0SDRIVE18D","offers":{"@type":"Offer","price":"16990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/bmw-x1-2019-metropolitana-de-santiago-cod77337658.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/6fef575909df.webp"}},{"@type":"ListItem","position":72,"item":{"@type":"Product","name":"BMWX5XDrive35I3.0Autompadd","offers":{"@type":"Offer","price":"19998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/bmw-x5-2015-metropolitana-de-santiago-cod77410331.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2b55431e350d.webp"}},{"@type":"ListItem","position":73,"item":{"@type":"Product","name":"HyundaiTucson2.0GLADVANCE4X2MT5P","offers":{"@type":"Offer","price":"9890000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/hyundai-tucson-2017-tarapaca-cod77105777.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/da1c38e0049e.webp"}},{"@type":"ListItem","position":74,"item":{"@type":"Product","name":"VolkswagenSaveiro1.6MTLite","offers":{"@type":"Offer","price":"11990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/volkswagen-saveiro-2026-metropolitana-de-santiago-cod77477079.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/af4a740f267e.webp"}},{"@type":"ListItem","position":75,"item":{"@type":"Product","name":"LandRoverRangeRover3.0RANGEROVERSPORTS/C","offers":{"@type":"Offer","price":"27990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/land-rover-range-rover-2017-metropolitana-de-santiago-cod63020047.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/2eb7a4da6d4f.webp"}},{"@type":"ListItem","position":76,"item":{"@type":"Product","name":"AudiA435TFSISport","offers":{"@type":"Offer","price":"31990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-a4-2023-metropolitana-de-santiago-cod76770151.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/7f5e2c026f8c.webp"}},{"@type":"ListItem","position":77,"item":{"@type":"Product","name":"JacT8CE2.0cc","offers":{"@type":"Offer","price":"6700000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/jac-t8-2020-metropolitana-de-santiago-cod77464106.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f88b17363008.webp"}},{"@type":"ListItem","position":78,"item":{"@type":"Product","name":"HyundaiGrandI10BAGLS1.2","offers":{"@type":"Offer","price":"5790000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/hyundai-grand-i10-2019-metropolitana-de-santiago-cod77467345.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/5782fa5fd19c.webp"}},{"@type":"ListItem","position":79,"item":{"@type":"Product","name":"CheryTiggo2.0TGDIGLXPROMAXAWD","offers":{"@type":"Offer","price":"16290000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chery-tiggo-2023-metropolitana-de-santiago-cod76812123.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/97fcae080b2f.webp"}},{"@type":"ListItem","position":80,"item":{"@type":"Product","name":"FordF-1503.0XLT","offers":{"@type":"Offer","price":"31998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ford-f-150-2022-metropolitana-de-santiago-cod77323403.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/409650bd7355.webp"}},{"@type":"ListItem","position":81,"item":{"@type":"Product","name":"InfinitiQX60QX603.5","offers":{"@type":"Offer","price":"12998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/infiniti-qx60-2016-metropolitana-de-santiago-cod77354654.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/3bd2edcc7138.webp"}},{"@type":"ListItem","position":82,"item":{"@type":"Product","name":"ChevroletColoradoCOLORADO2.8TDWTMT2WD","offers":{"@type":"Offer","price":"26290000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-colorado-2025-metropolitana-de-santiago-cod77079659.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/b97ca27abc2e.webp"}},{"@type":"ListItem","position":83,"item":{"@type":"Product","name":"AudiA42.0TFSI35S-TRONIC","offers":{"@type":"Offer","price":"27490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-a4-2024-metropolitana-de-santiago-cod77337638.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/7411c71b37dd.webp"}},{"@type":"ListItem","position":84,"item":{"@type":"Product","name":"NissanVersa1.6SENSE4X2MT4P","offers":{"@type":"Offer","price":"12390000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-versa-2025-metropolitana-de-santiago-cod77482336.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/7c4ca972b8a4.webp"}},{"@type":"ListItem","position":85,"item":{"@type":"Product","name":"Mercedes-BenzC180CGIBLUEEFFICIENCY","offers":{"@type":"Offer","price":"7990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-c180-2012-metropolitana-de-santiago-cod77347835.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1c0b6614b479.webp"}},{"@type":"ListItem","position":86,"item":{"@type":"Product","name":"GreatWallPoerELITE2.04X2AT","offers":{"@type":"Offer","price":"19990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/great-wall-poer-2025-metropolitana-de-santiago-cod77327663.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/c5cabafe66d0.webp"}},{"@type":"ListItem","position":87,"item":{"@type":"Product","name":"FordF-150LARIATSPORT4X45.0L","offers":{"@type":"Offer","price":"39990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/ford-f-150-2024-metropolitana-de-santiago-cod77355391.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/17f9a4558d32.webp"}},{"@type":"ListItem","position":88,"item":{"@type":"Product","name":"ChevroletColorado2.8CTDI4X4LTZAT4P","offers":{"@type":"Offer","price":"23490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-colorado-2023-metropolitana-de-santiago-cod77306338.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/a78490a2c1cd.webp"}},{"@type":"ListItem","position":89,"item":{"@type":"Product","name":"Peugeot30081.6GTPURETECH4X2180E","offers":{"@type":"Offer","price":"18490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/peugeot-3008-2022-metropolitana-de-santiago-cod77155156.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/50853b187cdc.webp"}},{"@type":"ListItem","position":90,"item":{"@type":"Product","name":"AudiQ335TFSI1.4","offers":{"@type":"Offer","price":"21990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/audi-q3-2022-metropolitana-de-santiago-cod77305184.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/271970f2a7db.webp"}},{"@type":"ListItem","position":91,"item":{"@type":"Product","name":"BMW435iCOUPE3.0","offers":{"@type":"Offer","price":"19990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/bmw-435i-2014-metropolitana-de-santiago-cod77405576.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/1b1baa2fa911.webp"}},{"@type":"ListItem","position":92,"item":{"@type":"Product","name":"NissanXTrail2.5SENSEMC4X22ROWCVT","offers":{"@type":"Offer","price":"15690000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-x-trail-2022-metropolitana-de-santiago-cod77371575.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/8d71e7955736.webp"}},{"@type":"ListItem","position":93,"item":{"@type":"Product","name":"MiniCooper1.5AUTOESSENTIAL","offers":{"@type":"Offer","price":"21490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mini-cooper-2024-metropolitana-de-santiago-cod77184929.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/6205b32ffc8a.webp"}},{"@type":"ListItem","position":94,"item":{"@type":"Product","name":"NissanNavara2.34X4DOB.CAB.AT","offers":{"@type":"Offer","price":"29490000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/nissan-navara-2024-metropolitana-de-santiago-cod77101132.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/f74c7f9aa220.webp"}},{"@type":"ListItem","position":95,"item":{"@type":"Product","name":"HavalH6Deluxe1.5.","offers":{"@type":"Offer","price":"17998000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/haval-h6-2024-metropolitana-de-santiago-cod77406874.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/360e2b0295e4.webp"}},{"@type":"ListItem","position":96,"item":{"@type":"Product","name":"HyundaiCretaSU2I1.5","offers":{"@type":"Offer","price":"11990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/hyundai-creta-2021-metropolitana-de-santiago-cod77410242.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/4c30bd812910.webp"}},{"@type":"ListItem","position":97,"item":{"@type":"Product","name":"ChevroletCaptiva1.5TLTZFWDCVTAT5P","offers":{"@type":"Offer","price":"12990000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/chevrolet-captiva-2022-metropolitana-de-santiago-cod77423244.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/07a1ae3ac856.webp"}},{"@type":"ListItem","position":98,"item":{"@type":"Product","name":"ToyotaHiluxDcabDX4x22.4cc","offers":{"@type":"Offer","price":"13980000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/toyota-hilux-2023-metropolitana-de-santiago-cod77457342.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/800ff11cd9d0.webp"}},{"@type":"ListItem","position":99,"item":{"@type":"Product","name":"Mercedes-BenzML3.0BLUETEC4MATIC","offers":{"@type":"Offer","price":"16950000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/mercedes-benz-ml-2014-metropolitana-de-santiago-cod77157324.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/27b2b241cdba.webp"}},{"@type":"ListItem","position":100,"item":{"@type":"Product","name":"ToyotaHiluxDcabDX4x22.4cc","offers":{"@type":"Offer","price":"13890000","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"Emol Automóviles"},"url":"http://automoviles.emol.com/venta/autos/toyota-hilux-2023-metropolitana-de-santiago-cod77467312.html"},"image":"https://fernandoandresmunoz.github.io/fernandoandresmunoz/imagenes/0b00003e2a37.webp"}}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><span>Páginas <b>&amp;</b> Precios <em>| Monitor de Ofertas</em></span><small id="upd">cargando…</small></div>
+  <h1 id="hero-title">Los mejores descuentos de autos en Chile, <em>actualizados hoy.</em></h1>
+  <p class="lead" id="hero-desc">Vehículos, autos usados y nuevos con mayor baja de precio.</p>
+  <div class="stats">
+    <div id="s1">–<span>Ofertas</span></div>
+    <div id="s2">–<span>Tiendas</span></div>
+    <div id="s3">–<span>Descuento promedio</span></div>
+  </div>
+</header>
+</div>
+
+<nav class="tabs-wrap wrap" aria-label="Categorías y Tiendas">
+  <div class="tabs-scroll" id="tabs-nav"></div>
+</nav>
+
+<div class="bar"><div class="wrap">
+  <div class="row">
+    <input id="q" type="search" placeholder="Buscar..." aria-label="Buscar">
+    <select id="min" aria-label="Descuento mínimo"><option value="0">Cualquier descuento</option><option value="20">+20%</option><option value="40">+40%</option><option value="50">+50%</option><option value="70">+70%</option></select>
+    <select id="per" aria-label="Filas por página"><option>10</option><option selected>25</option><option>50</option><option value="1000">Todos</option></select>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <p class="count" id="count"></p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th data-k="title" id="col-item">Vehículo</th><th data-k="tienda">Tienda</th><th class="r" data-k="promedio">Precio normal</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th></th></tr></thead>
+    <tbody id="body"></tbody>
+  </table></div>
+  <nav class="pager" id="pager"></nav>
+</main>
+
+<footer class="wrap">© Páginas &amp; Precios · Monitoreo automático de ofertas en Chile. Los precios y disponibilidad son responsabilidad de cada tienda.</footer>
+
+<script>
+window.PAGE_DEFAULT_TAB = "automoviles";
+const $ = id => document.getElementById(id),
+  clp = n => "$" + Math.round(n).toLocaleString("es-CL"),
+  esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const COLORS = ["#ff8a3d", "#4da3ff", "#6fe3a5", "#ff5d8f", "#b78cff", "#ffc857", "#20c997", "#fd7e14"];
+let TABS = [], currentTab = null, B = [], D = [], page = 1, store = -1, key = "descuento", dir = -1, maxD = 1;
+const tabCache = {};
+
+fetch("tabs.json", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(data => {
+    TABS = data.tabs || [];
+    renderTabsBar();
+    const hash = (location.hash || "").replace("#", "").trim();
+    const found = TABS.find(t => t.id === hash);
+    const initialId = found ? found.id : (TABS.find(t => t.id === window.PAGE_DEFAULT_TAB) || TABS[0])?.id;
+    if (initialId) switchTab(initialId, false);
+  })
+  .catch(() => {
+    // Fallback: intentar cargar libros.json directamente
+    fetch("libros.json", { cache: "no-cache" }).then(r => r.json()).then(j => {
+      initTabData({ id: "libros", name: "Libros", item_label: "Libro", headline: "Los mejores descuentos de libros en Chile", subtitle: "Librerías principales de Chile" }, j);
+    }).catch(() => {
+      $("upd").textContent = "sin datos";
+      $("body").innerHTML = `<tr><td colspan="8"><div class="msg">No pude leer los datos.<br><br>Genera las ofertas con <code>python3 script_generator.py</code>.</div></td></tr>`;
+    });
+  });
+
+function renderTabsBar() {
+  const nav = $("tabs-nav");
+  nav.innerHTML = TABS.map(t => `
+    <button class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" data-tab="${t.id}" id="tab-btn-${t.id}" type="button">
+      <span class="t-icon">${t.icon || "🏷️"}</span>
+      <span>${esc(t.name)}</span>
+      <span class="t-badge">${t.total || 0}</span>
+    </button>
+  `).join("");
+}
+
+$("tabs-nav").onclick = e => {
+  const btn = e.target.closest(".tab-btn");
+  if (!btn) return;
+  const tid = btn.dataset.tab;
+  if (tid) switchTab(tid, true);
+};
+
+window.addEventListener("hashchange", () => {
+  const hash = (location.hash || "").replace("#", "").trim();
+  if (hash && (!currentTab || currentTab.id !== hash)) {
+    switchTab(hash, false);
+  }
+});
+
+function switchTab(tabId, updateHash) {
+  const tab = TABS.find(t => t.id === tabId);
+  if (!tab) return;
+  currentTab = tab;
+  if (updateHash) {
+    history.replaceState(null, "", "#" + tabId);
+  }
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    const isAct = b.dataset.tab === tabId;
+    b.classList.toggle("active", isAct);
+    if (isAct) b.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+  });
+
+  // Actualizar hero y textos
+  $("hero-title").innerHTML = tab.headline || `Los mejores descuentos en ${esc(tab.name)}, <em>actualizados hoy.</em>`;
+  $("hero-desc").textContent = tab.subtitle || `Monitoreo de precios y descuentos en ${tab.name}.`;
+  $("col-item").textContent = tab.item_label || "Producto";
+  $("q").placeholder = `Buscar en ${tab.name}...`;
+
+  if (tabCache[tabId]) {
+    initTabData(tab, tabCache[tabId]);
+  } else {
+    $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Cargando ofertas de ${esc(tab.name)}…</div></td></tr>`;
+    fetch(tab.file || `${tabId}.json`, { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(j => {
+        tabCache[tabId] = j;
+        initTabData(tab, j);
+      })
+      .catch(err => {
+        $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Error al cargar datos de ${esc(tab.name)}.</div></td></tr>`;
+      });
+  }
+}
+
+const fixUrl = b => {
+  if (!b.url) return "";
+  if (/buscalibre/i.test(b.tienda) && !/^https?:/i.test(b.url)) {
+    return new URL(b.url, "https://www.buscalibre.cl/").href;
+  }
+  return b.url;
+};
+
+function initTabData(tab, j) {
+  D = j.dominios || [];
+  const items = j.items || j.libros || [];
+  B = items.map(b => ({ ...b, ahorro: (b.promedio || 0) - (b.precio || 0), url: fixUrl(b) }));
+  maxD = Math.max(...B.map(b => b.descuento || 0), 1);
+  if (j.generated_at) {
+    $("upd").textContent = "Actualizado " + new Date(j.generated_at).toLocaleString("es-CL", { dateStyle: "medium", timeStyle: "short" });
+  }
+  $("s1").firstChild.textContent = B.length;
+  $("s2").firstChild.textContent = D.length || 1;
+  $("s3").firstChild.textContent = Math.round(B.reduce((a, b) => a + (b.descuento || 0), 0) / Math.max(B.length, 1)) + "%";
+
+  // Chips de tiendas del tab
+  if (D.length > 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = [{ name: "Todas" }, ...D].map((d, i) =>
+      `<button class="chip${i ? "" : " on"}" data-i="${i ? d.id : -1}">${i ? `<i style="--c:${COLORS[(i - 1) % COLORS.length]}"></i>` : ""}${esc(d.name)}</button>`
+    ).join("");
+  } else if (D.length === 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = `<button class="chip on" data-i="${D[0].id}"><i style="--c:${COLORS[0]}"></i>${esc(D[0].name)}</button>`;
+  } else {
+    $("chips").style.display = "none";
+    $("chips").innerHTML = "";
+  }
+
+  page = 1;
+  store = -1;
+  render();
+}
+
+const col = id => {
+  const idx = D.findIndex(d => d.id === id);
+  return COLORS[Math.max(idx, 0) % COLORS.length];
+};
+
+$("chips").onclick = e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  store = +b.dataset.i;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+  page = 1;
+  render();
+};
+
+["q", "min", "per"].forEach(id => $(id).addEventListener("input", () => { page = 1; render(); }));
+
+document.querySelector("thead").onclick = e => {
+  const h = e.target.closest("th[data-k]");
+  if (!h) return;
+  const k = h.dataset.k;
+  dir = key === k ? -dir : (k === "title" || k === "tienda" || k === "precio" || k === "promedio" ? 1 : -1);
+  key = k;
+  page = 1;
+  render();
+};
+
+function render() {
+  const q = $("q").value.toLowerCase().trim(), m = +$("min").value, PER = +$("per").value;
+  const L = B.filter(b => (store < 0 || b.dominio_id === store) && b.descuento >= m && (!q || (b.title || "").toLowerCase().includes(q)));
+  L.sort((a, b) => (typeof a[key] === "string" ? a[key].localeCompare(b[key], "es") : a[key] - b[key]) * dir);
+  document.querySelectorAll("th[data-k]").forEach(h => {
+    h.dataset.l = h.dataset.l || h.textContent;
+    h.classList.toggle("s", h.dataset.k === key);
+    h.textContent = h.dataset.l + (h.dataset.k === key ? (dir > 0 ? " ↑" : " ↓") : "");
+  });
+  const pages = Math.max(1, Math.ceil(L.length / PER));
+  page = Math.min(page, pages);
+  const st = (page - 1) * PER;
+  $("count").innerHTML = `<b>${L.length}</b> ofertas · mostrando ${L.length ? st + 1 : 0}–${Math.min(st + PER, L.length)}`;
+
+  $("body").innerHTML = L.length ? L.slice(st, st + PER).map((b, i) => `<tr>
+    <td class="n">${st + i + 1}</td>
+    <td><div class="bk"><div class="mc">${b.thumbnail ? `<img src="${esc(b.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "📦"}</div><div class="t">${esc(b.title)}</div></div></td>
+    <td><span class="st" style="--c:${col(b.dominio_id)}"><i></i>${esc(b.tienda)}</span></td>
+    <td class="r o">${clp(b.promedio)}</td>
+    <td class="r p">${clp(b.precio)}</td>
+    <td><div class="d${b.descuento >= 45 ? " hot" : ""}"><b>−${Math.round(b.descuento)}%</b><span><i style="width:${b.descuento / maxD * 100}%"></i></span></div></td>
+    <td class="r sv">${clp(b.ahorro)}</td>
+    <td class="r">${b.url ? `<a class="btn" href="${esc(b.url)}" target="_blank" rel="noopener" data-id="${b.id}" data-pos="${st + i + 1}">Ir a la tienda ↗</a>` : ""}</td>
+  </tr>`).join("") : `<tr><td colspan="8"><div class="msg">Nada por aquí… prueba otra búsqueda 🔍</div></td></tr>`;
+
+  const bt = (l, p, x = "") => `<button ${x} data-p="${p}">${l}</button>`, a = [bt("←", page - 1, page === 1 ? "disabled" : "")];
+  const set = [...new Set([1, 2, page - 1, page, page + 1, pages - 1, pages])].filter(x => x >= 1 && x <= pages).sort((x, y) => x - y);
+  set.forEach((x, i) => {
+    if (i && x - set[i - 1] > 1) a.push("<span>…</span>");
+    a.push(bt(x, x, x === page ? 'class="on"' : ""));
+  });
+  a.push(bt("→", page + 1, page === pages ? "disabled" : ""));
+  $("pager").innerHTML = a.join("");
+}
+
+$("pager").onclick = e => {
+  const b = e.target.closest("button");
+  if (!b || b.disabled) return;
+  page = +b.dataset.p;
+  render();
+  $("count").scrollIntoView({ behavior: "smooth" });
+};
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.btn[data-id]");
+  if (!a || typeof gtag !== "function") return;
+  const b = B.find(x => String(x.id) === a.dataset.id);
+  if (!b) return;
+  gtag("event", "select_item", {
+    item_list_name: currentTab ? currentTab.name : "Ofertas",
+    currency: "CLP",
+    items: [{ item_id: String(b.id), item_name: b.title, item_brand: b.tienda, price: Math.round(b.precio), discount: Math.round(b.ahorro), index: +a.dataset.pos }]
+  });
+});
+</script>
+</body>
+</html>
