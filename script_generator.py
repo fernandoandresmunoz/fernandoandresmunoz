@@ -89,10 +89,33 @@ def arreglar_url(url, tienda):
     return url
 
 
+# Algunos títulos llegan con la codificación dañada (bytes UTF-8 leídos como Latin-1/cp1252 y luego
+# pasados por .title()): "Sueã\x91o" en vez de "Sueño", 'Educaciã"N' en vez de "Educación".
+_MAYUS = {"\x81": "Á", "\x89": "É", "\u2030": "É", "\x8d": "Í", "\x93": "Ó", "\u201c": "Ó", '"': "Ó",
+          "\x9a": "Ú", "\u0161": "Ú", "\x91": "Ñ", "\u2018": "Ñ", "'": "Ñ", "\x9c": "Ü", "\u0153": "Ü"}
+_RE_MAYUS = re.compile("([Ãã])([" + re.escape("".join(_MAYUS)) + "])")
+_RE_MINUS = re.compile("[Ãã]([\xa0-\xbf])")
+_RE_SIGNOS = re.compile("Â([\xa0-\xbf])")
+
+
+def limpiar_texto(s):
+    """Quita espacios sobrantes y repara tildes/ñ con la codificación dañada."""
+    if not isinstance(s, str):
+        return s
+    s = " ".join(s.split())
+    fix = _RE_MAYUS.sub(lambda m: _MAYUS[m.group(2)] if m.group(1) == "Ã" else _MAYUS[m.group(2)].lower(), s)
+    fix = _RE_MINUS.sub(lambda m: bytes([0xC3, ord(m.group(1))]).decode("utf-8"), fix)
+    fix = _RE_SIGNOS.sub(lambda m: m.group(1), fix)
+    if fix != s:  # "EducacióN" -> "Educación": la fuente dejó la N en mayúscula
+        fix = re.sub(r"([áéíóúñü])([A-ZÁÉÍÓÚÑ])(?![A-Za-záéíóúñ])",
+                     lambda m: m.group(1) + m.group(2).lower(), fix)
+    return fix
+
+
 def normalizar(it, dominio_id, tienda):
     return {
         "id": it.get("id"),
-        "title": it.get("title"),
+        "title": limpiar_texto(it.get("title")),
         "dominio_id": dominio_id,
         "tienda": tienda,
         "precio": it.get("precio"),
@@ -100,7 +123,7 @@ def normalizar(it, dominio_id, tienda):
         "descuento": round(-(it.get("variacion_promedio") or 0), 1),
         "variacion_ultimo_precio": it.get("variacion_ultimo_precio"),
         "thumbnail": it.get("thumbnail"),
-        "author": it.get("author"),
+        "author": limpiar_texto(it.get("author")),
         "url": arreglar_url(it.get("link") or it.get("url"), tienda),
     }
 
