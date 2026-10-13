@@ -1,0 +1,7 @@
+venv/
+.env
+cron.log
+cron.log.tmp
+__pycache__/
+*.tmp
+.DS_Store
