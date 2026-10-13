@@ -7,9 +7,11 @@ Luego consolida y deja los TOP mejores entre todos los dominios.
 Uso:
     export ONESOURCE_TOKEN="tu_token"
     export SITE_URL="https://usuario.github.io/repo"   # opcional: imágenes absolutas en el JSON-LD
+    pip install pillow   # una vez: reduce las portadas a miniaturas WebP
     python3 script_generator.py
 """
 import hashlib
+import io
 import json
 import os
 import re
@@ -19,13 +21,20 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 
+try:
+    from PIL import Image
+except ImportError:  # sin Pillow guarda las portadas tal cual (mucho más pesadas)
+    Image = None
+
 BASE = "http://onesource.cl/api"
 DOMINIOS = [4, 1, 16]
-POR_DOMINIO = 100   # cuántos intenta traer de cada dominio
-TOP = 100           # cuántos quedan en el consolidado
+POR_DOMINIO = 250   # cuántos intenta traer de cada dominio
+TOP = 250           # cuántos quedan en el consolidado
 SALIDA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "libros.json")
 TOKEN = os.environ.get("ONESOURCE_TOKEN")
 CARPETA_IMG = "imagenes"
+ANCHO_IMG, ALTO_IMG = 96, 128  # la tabla las muestra a 44x56 px; esto cubre pantallas retina
+LD_MAX = 100                   # cuántos libros entran al JSON-LD
 RUTA_IMG = os.path.join(os.path.dirname(SALIDA), CARPETA_IMG)
 INDEX = os.path.join(os.path.dirname(SALIDA), "index.html")
 SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")
@@ -112,7 +121,7 @@ def descargar_imagen(url, tienda):
         return None
     nombre = hashlib.sha1(url.encode()).hexdigest()[:12]
     for f in os.listdir(RUTA_IMG):  # ya descargada en una corrida anterior
-        if f.startswith(nombre + "."):
+        if f.startswith(nombre + ".") and (Image is None or f.endswith(".webp")):
             return f"{CARPETA_IMG}/{f}"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -121,6 +130,13 @@ def descargar_imagen(url, tienda):
             datos = r.read(5_000_000)
         if not ext:
             return None  # la respuesta no era una imagen
+        if Image is not None:  # miniatura WebP: ~3 KB en vez de ~30 KB
+            im = Image.open(io.BytesIO(datos))
+            im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+            im.thumbnail((ANCHO_IMG, ALTO_IMG), Image.LANCZOS)
+            buf = io.BytesIO()
+            im.save(buf, "WEBP", quality=70, method=6)
+            datos, ext = buf.getvalue(), "webp"
         archivo = f"{nombre}.{ext}"
         with open(os.path.join(RUTA_IMG, archivo), "wb") as f:
             f.write(datos)
@@ -181,7 +197,7 @@ def inyectar_json_ld(libros):
         return
     with open(INDEX, encoding="utf-8") as f:
         html = f.read()
-    datos = json.dumps(json_ld(libros), ensure_ascii=False).replace("</", "<\\/")
+    datos = json.dumps(json_ld(libros[:LD_MAX]), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     bloque = f'<script type="application/ld+json" id="ld-books">{datos}</script>'
     if BLOQUE_LD.search(html):
         html = BLOQUE_LD.sub(lambda m: bloque, html)  # reemplaza el de la corrida anterior
@@ -191,7 +207,7 @@ def inyectar_json_ld(libros):
     with open(tmp, "w", encoding="utf-8") as f:
         f.write(html)
     os.replace(tmp, INDEX)
-    print(f"JSON-LD con {len(libros)} libros inyectado en {INDEX}")
+    print(f"JSON-LD con {min(len(libros), LD_MAX)} libros inyectado en {INDEX}")
 
 
 def main():
@@ -226,11 +242,11 @@ def main():
         "por_dominio": POR_DOMINIO,
         "total": len(libros),
         "dominios": dominios,
-        "libros": libros,
+        "libros": [{k: v for k, v in b.items() if v is not None} for b in libros],
     }
     tmp = SALIDA + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(salida, f, ensure_ascii=False, indent=2)
+        json.dump(salida, f, ensure_ascii=False, separators=(",", ":"))
     os.replace(tmp, SALIDA)  # escritura atómica: el html nunca lee un JSON a medias
     inyectar_json_ld(libros)
     print(f"\n{len(libros)} libros guardados en {SALIDA}")
