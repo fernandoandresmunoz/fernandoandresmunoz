@@ -164,6 +164,20 @@ TABS_CONFIG = [
         "html_file": "unimarc.html",
     },
     {
+        "id": "abc",
+        "name": "abc",
+        "icon": "📺",
+        "headline": "Los mejores descuentos en abc, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en abc.",
+        "item_label": "Producto",
+        "domains": [6],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "abc.json",
+        "html_file": "abc.html",
+    },
+    {
         "id": "automoviles",
         "name": "Automóviles",
         "icon": "🚗",
@@ -191,6 +205,7 @@ NOMBRES_TIENDA = {
     "jumbo.cl": "Jumbo",
     "unimarc.cl": "Unimarc",
     "automoviles.emol.com": "Emol Automóviles",
+    "www.lapolar.cl": "abc",
 }
 
 
@@ -220,12 +235,17 @@ def nombres_dominios():
 
 
 def ultimo_upload(dominio):
-    """Devuelve el último upload si fue creado dentro de MAX_HORAS_UPLOAD, si no None."""
+    """Devuelve el último upload terminado si fue creado dentro de MAX_HORAS_UPLOAD, si no None.
+
+    Si el más reciente aún está en ejecución (finished_at vacío, sin datos 'featured'),
+    se usa el anterior que sí terminó. Si ninguno de los últimos tiene finished_at,
+    se mantiene el comportamiento anterior (el más reciente).
+    """
     try:
-        res = get("/uploads/", domain=dominio, page_size=1).get("results", [])
+        res = get("/uploads/", domain=dominio, page_size=5).get("results", [])
         if not res:
             return None
-        up = res[0]
+        up = next((u for u in res if u.get("finished_at")), res[0])
         created_str = up.get("created_at")
         if created_str:
             created = datetime.fromisoformat(created_str.replace("Z", "+00:00"))
@@ -286,6 +306,8 @@ def arreglar_url(url, tienda):
         return urllib.parse.urljoin("https://www.jumbo.cl/", url)
     if "unimarc" in t:
         return urllib.parse.urljoin("https://www.unimarc.cl/", url)
+    if "lapolar" in t or "abc" in t:
+        return urllib.parse.urljoin("https://www.lapolar.cl/", url)
     if "emol" in t or "automoviles" in t:
         return urllib.parse.urljoin("http://automoviles.emol.com/", url)
     return "https://" + url
