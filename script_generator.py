@@ -43,7 +43,9 @@ if os.path.exists(ENV_PATH):
 
 BASE = "http://onesource.cl/api"
 TOKEN = os.environ.get("ONESOURCE_TOKEN")
-SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")
+# Solo el origen (https://dominio): los links, el canonical y el sitemap usan rutas desde la raíz (/abc)
+_u = urllib.parse.urlsplit(os.environ.get("SITE_URL", "https://fernandoandresmunoz.github.io"))
+SITE_URL = f"{_u.scheme}://{_u.netloc}" if _u.netloc else "https://fernandoandresmunoz.github.io"
 CARPETA_IMG = "imagenes"
 RUTA_IMG = os.path.join(DIR_BASE, CARPETA_IMG)
 ANCHO_IMG, ALTO_IMG = 96, 128
@@ -442,8 +444,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
 <title>__PAGE_TITLE__</title>
 <meta name="description" content="__PAGE_DESC__">
+__CANONICAL_TAG__
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag.js?id=G-CJRB34M9L8"></script>
 <script>
@@ -576,16 +580,24 @@ const $ = id => document.getElementById(id),
 const COLORS = ["#ff8a3d", "#4da3ff", "#6fe3a5", "#ff5d8f", "#b78cff", "#ffc857", "#20c997", "#fd7e14"];
 let TABS = [], currentTab = null, B = [], D = [], page = 1, store = -1, key = "descuento", dir = -1, maxD = 1;
 const tabCache = {};
+const tabPath = t => t.path || (t.html_file && t.html_file !== "index.html" ? "/" + t.html_file.replace(".html", "") : "/");
+const tabFromLocation = () => {
+  let p = location.pathname.replace("/index.html", "/").replace(".html", "");
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return TABS.find(t => tabPath(t) === p);
+};
 
 fetch("tabs.json", { cache: "no-cache" })
   .then(r => { if (!r.ok) throw 0; return r.json(); })
   .then(data => {
     TABS = data.tabs || [];
     renderTabsBar();
-    const hash = (location.hash || "").replace("#", "").trim();
-    const found = TABS.find(t => t.id === hash);
+    // Links viejos tipo /#abc: se llevan a la URL limpia /abc
+    const legacy = TABS.find(t => t.id === (location.hash || "").replace("#", "").trim());
+    const found = legacy || tabFromLocation();
     const initialId = found ? found.id : (TABS.find(t => t.id === window.PAGE_DEFAULT_TAB) || TABS[0])?.id;
     if (initialId) switchTab(initialId, false);
+    if (legacy) history.replaceState(null, "", tabPath(legacy));
   })
   .catch(() => {
     // Fallback: intentar cargar libros.json directamente
@@ -600,26 +612,25 @@ fetch("tabs.json", { cache: "no-cache" })
 function renderTabsBar() {
   const nav = $("tabs-nav");
   nav.innerHTML = TABS.map(t => `
-    <button class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" data-tab="${t.id}" id="tab-btn-${t.id}" type="button">
+    <a class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" href="${tabPath(t)}" data-tab="${t.id}" id="tab-btn-${t.id}">
       <span class="t-icon">${t.icon || "🏷️"}</span>
       <span>${esc(t.name)}</span>
       <span class="t-badge">${t.total || 0}</span>
-    </button>
+    </a>
   `).join("");
 }
 
 $("tabs-nav").onclick = e => {
   const btn = e.target.closest(".tab-btn");
-  if (!btn) return;
+  if (!btn || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+  e.preventDefault();
   const tid = btn.dataset.tab;
-  if (tid) switchTab(tid, true);
+  if (tid && !(currentTab && currentTab.id === tid)) switchTab(tid, true);
 };
 
-window.addEventListener("hashchange", () => {
-  const hash = (location.hash || "").replace("#", "").trim();
-  if (hash && (!currentTab || currentTab.id !== hash)) {
-    switchTab(hash, false);
-  }
+window.addEventListener("popstate", () => {
+  const t = tabFromLocation();
+  if (t && (!currentTab || currentTab.id !== t.id)) switchTab(t.id, false);
 });
 
 function switchTab(tabId, updateHash) {
@@ -627,8 +638,9 @@ function switchTab(tabId, updateHash) {
   if (!tab) return;
   currentTab = tab;
   if (updateHash) {
-    history.replaceState(null, "", "#" + tabId);
+    history.pushState(null, "", tabPath(tab));
   }
+  document.title = `${tab.name} | Monitor de Ofertas · Descuentos en Chile`;
   document.querySelectorAll(".tab-btn").forEach(b => {
     const isAct = b.dataset.tab === tabId;
     b.classList.toggle("active", isAct);
@@ -797,9 +809,35 @@ def render_html_page(tab_info, json_ld_obj, default_tab_id):
     html = html.replace("__HERO_SUBTITLE__", hero_subtitle)
     html = html.replace("__ITEM_LABEL__", item_label)
     html = html.replace("__JSON_LD_CONTENT__", ld_json_str)
+    path = "/" if tab_info.get("html_file", "index.html") == "index.html" else "/" + tab_info["html_file"].rsplit(".", 1)[0]
+    canonical = f'<link rel="canonical" href="{SITE_URL}{path}">' if SITE_URL else ""
+    html = html.replace("__CANONICAL_TAG__", canonical)
     html = html.replace("__DEFAULT_TAB_ID__", default_tab_id)
     return html
 
+
+
+def generar_sitemap(active_tabs_data, fecha):
+    """sitemap.xml con una URL limpia por tab (libros es la home). Crea robots.txt si no existe."""
+    filas = []
+    for tab in active_tabs_data:
+        html_file = tab["config"].get("html_file", "index.html")
+        path = "/" if html_file == "index.html" else "/" + html_file.rsplit(".", 1)[0]
+        loc = (SITE_URL + path).replace("&", "&amp;")
+        prio = "1.0" if path == "/" else "0.8"
+        filas.append(f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>{fecha}</lastmod>\n"
+                     f"    <changefreq>daily</changefreq>\n    <priority>{prio}</priority>\n  </url>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           + "\n".join(filas) + "\n</urlset>\n")
+    ruta = os.path.join(DIR_BASE, "sitemap.xml")
+    with open(ruta + ".tmp", "w", encoding="utf-8") as f:
+        f.write(xml)
+    os.replace(ruta + ".tmp", ruta)
+    robots = os.path.join(DIR_BASE, "robots.txt")
+    if not os.path.exists(robots):
+        with open(robots, "w", encoding="utf-8") as f:
+            f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
 
 
 def guardar_json_atomico(ruta, datos):
@@ -898,6 +936,7 @@ def main():
             "item_label": cfg.get("item_label", "Producto"),
             "file": cfg.get("json_file", f"{cfg['id']}.json"),
             "html_file": cfg.get("html_file", f"{cfg['id']}.html"),
+            "path": "/" if cfg.get("html_file", "index.html") == "index.html" else "/" + cfg["html_file"].rsplit(".", 1)[0],
             "total": len(tab["items"]),
             "avg_discount": tab["avg_discount"],
             "dominios": tab["dominios"],
@@ -959,6 +998,8 @@ def main():
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(index_html_content)
     print(f"✓ Generado index.html principal.")
+    generar_sitemap(active_tabs_data, now_iso[:10])
+    print(f"✓ Generado sitemap.xml con {len(active_tabs_data)} URLs.")
 
     print("\n¡Proceso completado con éxito! Todos los tabs y páginas HTML fueron generados.")
 
