@@ -52,6 +52,12 @@ ANCHO_IMG, ALTO_IMG = 96, 128
 LD_MAX = 100
 MAX_HORAS_UPLOAD = 48  # Regla de new_stores.txt: si el upload no está dentro de 48h, descartar
 
+# Historial de precios (sparkline): /registers/?article=<id>. Si onesource.cl no lo expone,
+# define REGISTERS_URL en .env (p. ej. http://192.168.1.22/api; solo alcanzable desde esa red).
+REGISTERS_BASE = os.environ.get("REGISTERS_URL", BASE).rstrip("/")
+HIST_PAGE_SIZE = 250   # registros que se piden por producto
+HIST_PUNTOS = 40       # puntos que se guardan en el JSON (muestreo parejo, incluye primero y último)
+
 TABS_CONFIG = [
     {
         "id": "libros",
@@ -409,6 +415,43 @@ def guardar_imagenes(todos_los_items):
     print(f"✓ {len(usadas)} imágenes locales en {RUTA_IMG} ({borradas} obsoletas eliminadas)")
 
 
+def historial_precios(article_id):
+    """Serie cronológica de precios del artículo (máx. HIST_PUNTOS) o None si hay menos de 2 puntos."""
+    resp = get(f"{REGISTERS_BASE}/registers/", article=article_id, ordering="-obtained", page_size=HIST_PAGE_SIZE)
+    precios = [r["precio"] for r in reversed(resp.get("results", [])) if r.get("precio")]
+    if len(precios) < 2:
+        return None
+    if len(precios) > HIST_PUNTOS:
+        n = len(precios) - 1
+        precios = [precios[round(i * n / (HIST_PUNTOS - 1))] for i in range(HIST_PUNTOS)]
+    return [round(p) for p in precios]
+
+
+def guardar_historiales(items):
+    """Agrega 'hist' (lista de precios) a cada item. Si algo falla, el item queda sin hist y la web lo tolera."""
+    estado = {"ok": 0, "fallos": 0}
+
+    def uno(b):
+        if estado["ok"] == 0 and estado["fallos"] >= 20:  # el endpoint no responde: no insistir
+            return None
+        try:
+            h = historial_precios(b["id"])
+            estado["ok"] += 1
+            return h
+        except Exception:
+            estado["fallos"] += 1
+            return None
+
+    with ThreadPoolExecutor(8) as ex:
+        series = list(ex.map(uno, items))
+    for b, h in zip(items, series):
+        b["hist"] = h
+    con = sum(1 for h in series if h)
+    print(f"✓ Historial de precios: {con}/{len(items)} productos ({estado['fallos']} errores)")
+    if estado["ok"] == 0 and estado["fallos"]:
+        print(f"  ⚠ /registers/ no respondió en {REGISTERS_BASE}; define REGISTERS_URL en .env")
+
+
 def generar_json_ld(items, tab_info):
     schema_items = []
     is_book = tab_info["id"] == "libros"
@@ -460,8 +503,8 @@ __CANONICAL_TAG__
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff}
-@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff}}
+:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff;--up:#f87171;--dn:#4ade80;--fl:#94a3b8}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff;--up:#dc2626;--dn:#16a34a;--fl:#64748b}}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(900px 480px at 90% -10%,rgba(255,107,61,.09),transparent),radial-gradient(700px 380px at -5% 5%,rgba(82,225,155,.08),transparent)}
@@ -522,6 +565,8 @@ tbody tr{transition:background .15s}tbody tr:hover{background:var(--hov)}tbody t
 .d span{flex:1;height:8px;border-radius:9px;background:color-mix(in srgb,var(--mute) 26%,transparent);overflow:hidden}
 .d span i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc),#ff3d71)}
 .sv{color:var(--acc2);font-weight:600;white-space:nowrap}
+.sp{display:flex;align-items:center;justify-content:flex-end;gap:10px}.sp svg{width:120px;height:34px;flex:none}
+.sp b{font:600 12px ui-monospace,SFMono-Regular,Menlo,monospace;min-width:50px;text-align:right}
 .btn{display:inline-block;text-decoration:none;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:10px;font:700 12px Inter;white-space:nowrap;transition:all .15s}
 tr:hover .btn,.btn:hover{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
 .msg{text-align:center;padding:70px 20px;color:var(--mute);font:500 20px Fraunces,serif}.msg code{font:13px monospace;background:var(--hov);padding:3px 8px;border-radius:6px}
@@ -563,7 +608,7 @@ footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 48px;colo
 <main class="wrap">
   <p class="count" id="count"></p>
   <div class="tw"><table>
-    <thead><tr><th>#</th><th data-k="title" id="col-item">__ITEM_LABEL__</th><th data-k="tienda">Tienda</th><th class="r" data-k="promedio">Precio normal</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th></th></tr></thead>
+    <thead><tr><th>#</th><th data-k="title" id="col-item">__ITEM_LABEL__</th><th data-k="tienda">Tienda</th><th class="r">Historial</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th></th></tr></thead>
     <tbody id="body"></tbody>
   </table></div>
   <nav class="pager" id="pager"></nav>
@@ -734,6 +779,18 @@ document.querySelector("thead").onclick = e => {
   render();
 };
 
+// Mini gráfico del historial de precios (verde: bajó, rojo: subió). Sin historial, muestra el precio normal.
+function spark(b) {
+  const h = b.hist;
+  if (!h || h.length < 2) return `<span class="o">${clp(b.promedio)}</span>`;
+  const min = Math.min(...h), max = Math.max(...h), rng = max - min, W = 130, H = 40, P = 4;
+  const pts = h.map((v, i) => `${(i / (h.length - 1) * W).toFixed(1)},${(rng === 0 ? H / 2 : H - P - (v - min) / rng * (H - 2 * P)).toFixed(1)}`).join(" ");
+  const ch = h[0] ? (h[h.length - 1] - h[0]) / h[0] * 100 : 0;
+  const c = ch < -0.05 ? "var(--dn)" : ch > 0.05 ? "var(--up)" : "var(--fl)";
+  const tip = `Normal ${clp(b.promedio)} · mín ${clp(min)} · máx ${clp(max)} · ${h.length} registros`;
+  return `<div class="sp" title="${tip}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polygon points="${pts} ${W},${H} 0,${H}" fill="${c}" opacity=".13"/><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg><b style="color:${c}">${ch > 0 ? "+" : ""}${ch.toFixed(1).replace(".0", "")}%</b></div>`;
+}
+
 function render() {
   const q = $("q").value.toLowerCase().trim(), m = +$("min").value, PER = +$("per").value;
   const L = B.filter(b => (store < 0 || b.dominio_id === store) && b.descuento >= m && (!q || (b.title || "").toLowerCase().includes(q)));
@@ -752,7 +809,7 @@ function render() {
     <td class="n">${st + i + 1}</td>
     <td><div class="bk"><div class="mc">${b.thumbnail ? `<img src="${esc(b.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "📦"}</div><div class="t">${esc(b.title)}</div></div></td>
     <td><span class="st" style="--c:${col(b.dominio_id)}"><i></i>${esc(b.tienda)}</span></td>
-    <td class="r o">${clp(b.promedio)}</td>
+    <td class="r">${spark(b)}</td>
     <td class="r p">${clp(b.precio)}</td>
     <td><div class="d${b.descuento >= 45 ? " hot" : ""}"><b>−${Math.round(b.descuento)}%</b><span><i style="width:${b.descuento / maxD * 100}%"></i></span></div></td>
     <td class="r sv">${clp(b.ahorro)}</td>
@@ -921,6 +978,9 @@ def main():
     # Descarga unificada de imágenes (evita borrar imágenes entre tabs)
     print(f"\nDescargando imágenes de {len(todos_los_items_para_imagenes)} ofertas activas...")
     guardar_imagenes(todos_los_items_para_imagenes)
+
+    print("\nDescargando historial de precios...")
+    guardar_historiales(todos_los_items_para_imagenes)
 
     # Preparar tabs.json metadata
     now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
