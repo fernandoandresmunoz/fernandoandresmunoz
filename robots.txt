@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fernandoandresmunoz.github.io/sitemap.xml
