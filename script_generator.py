@@ -199,6 +199,90 @@ TABS_CONFIG = [
         "json_file": "automoviles.json",
         "html_file": "automoviles.html",
     },
+    {
+        "id": "8bits",
+        "name": "8-Bits",
+        "icon": "🕹️",
+        "headline": "Los mejores descuentos en 8-Bits, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en 8-Bits.",
+        "item_label": "Producto",
+        "domains": [33],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "8bits.json",
+        "html_file": "8bits.html",
+    },
+    {
+        "id": "bazar",
+        "name": "Bazar Historias",
+        "icon": "🎁",
+        "headline": "Los mejores descuentos en Bazar Historias, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en Bazar Historias.",
+        "item_label": "Producto",
+        "domains": [11],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "bazar.json",
+        "html_file": "bazar.html",
+    },
+    {
+        "id": "limonada",
+        "name": "Limonada",
+        "icon": "🍋",
+        "headline": "Los mejores descuentos en Limonada, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en Limonada.",
+        "item_label": "Producto",
+        "domains": [31],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "limonada.json",
+        "html_file": "limonada.html",
+    },
+    {
+        "id": "megagames",
+        "name": "Megagames",
+        "icon": "🎮",
+        "headline": "Los mejores descuentos en Megagames, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en Megagames.",
+        "item_label": "Producto",
+        "domains": [34],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "megagames.json",
+        "html_file": "megagames.html",
+    },
+    {
+        "id": "schilling",
+        "name": "Ópticas Schilling",
+        "icon": "👓",
+        "headline": "Los mejores descuentos en Ópticas Schilling, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en Ópticas Schilling.",
+        "item_label": "Producto",
+        "domains": [9],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "schilling.json",
+        "html_file": "schilling.html",
+    },
+    {
+        "id": "solotodo",
+        "name": "Solotodo",
+        "icon": "🔌",
+        "headline": "Los mejores descuentos en Solotodo, <em>actualizados hoy.</em>",
+        "subtitle": "Ofertas destacadas con mayor variación y descuento en Solotodo.",
+        "item_label": "Producto",
+        "domains": [120],
+        "top": 100,
+        "por_dominio": 100,
+        "max_descuento": 90.0,
+        "json_file": "solotodo.json",
+        "html_file": "solotodo.html",
+    },
 ]
 
 NOMBRES_TIENDA = {
@@ -318,6 +402,9 @@ def arreglar_url(url, tienda):
         return urllib.parse.urljoin("https://www.lapolar.cl/", url)
     if "emol" in t or "automoviles" in t:
         return urllib.parse.urljoin("http://automoviles.emol.com/", url)
+    # Tienda sin regla propia: si el link es una ruta (/producto/...), se completa con el dominio de la tienda
+    if url.startswith("/") and "." in t:
+        return urllib.parse.urljoin("https://" + t + "/", url)
     return "https://" + url
 
 
