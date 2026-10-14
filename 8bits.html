@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<title>8-Bits | Monitor de Ofertas · Descuentos en Chile</title>
+<meta name="description" content="Ofertas destacadas con mayor variación y descuento en 8-Bits.">
+<link rel="canonical" href="https://fernandoandresmunoz.github.io/8bits">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag.js?id=G-CJRB34M9L8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CJRB34M9L8');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff;--up:#f87171;--dn:#4ade80;--fl:#94a3b8}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff;--up:#dc2626;--dn:#16a34a;--fl:#64748b}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(900px 480px at 90% -10%,rgba(255,107,61,.09),transparent),radial-gradient(700px 380px at -5% 5%,rgba(82,225,155,.08),transparent)}
+.wrap{max-width:1260px;margin:auto;padding:0 20px}
+.hero{padding:44px 0 20px}
+.brand{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font:800 20px Fraunces,Georgia,serif}
+.brand b{color:var(--acc)}.brand em{font:500 14px Inter,sans-serif;color:var(--mute);font-style:normal}
+.brand small{font:500 12px Inter;color:var(--mute);border:1px solid var(--line);padding:5px 12px;border-radius:99px;background:var(--card)}
+h1{font:800 clamp(32px,5.5vw,64px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.035em;margin:32px 0 14px;max-width:880px}
+h1 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);font-size:16px;line-height:1.55;max-width:680px}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats div{font:800 28px Fraunces,serif}
+.stats span{display:block;font:500 11px Inter;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+
+/* Tabs Bar */
+.tabs-wrap{margin:28px auto 16px;display:flex;justify-content:center;width:100%}
+.tabs-scroll{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:0 auto;max-width:100%}
+@media (max-width:768px){.tabs-scroll{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}}
+.tabs-scroll::-webkit-scrollbar{height:5px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tab-btn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px Inter,sans-serif;cursor:pointer;transition:all .2s ease;text-decoration:none;user-select:none}
+.tab-btn:hover{border-color:var(--acc);transform:translateY(-1px);background:var(--hov)}
+.tab-btn.active{background:linear-gradient(135deg,rgba(255,107,61,.18),rgba(255,61,113,.15));border-color:var(--acc);color:var(--ink);box-shadow:0 0 18px -4px rgba(255,107,61,.4)}
+.tab-btn .t-icon{font-size:15px;line-height:1}
+.tab-btn .t-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:color-mix(in srgb,var(--mute) 24%,transparent);color:var(--mute);transition:all .2s}
+.tab-btn.active .t-badge{background:var(--acc);color:#fff}
+
+/* Sticky Filter Bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-block:1px solid var(--line);padding:12px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:11px 15px;border-radius:12px;font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+input{flex:1 1 240px}input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,107,61,.18)}
+.chips{margin-top:10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chip{flex:none;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:99px;font:500 13px Inter;display:flex;gap:7px;align-items:center;transition:all .15s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}.chip:hover{border-color:var(--acc)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.count{margin:22px 0 12px;color:var(--mute)}.count b{color:var(--ink)}
+
+/* Table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th{text-align:left;font:700 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:15px 16px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+th[data-k]{cursor:pointer}th[data-k]:hover,th.s{color:var(--acc)}
+.r{text-align:right}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{transition:background .15s}tbody tr:hover{background:var(--hov)}tbody tr:last-child td{border-bottom:0}
+.n{color:var(--mute);width:44px}
+.bk{display:flex;gap:14px;align-items:center}
+.mc{flex:none;width:44px;height:56px;border-radius:6px;overflow:hidden;background:var(--line);box-shadow:2px 4px 10px -2px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:18px}
+.mc img{width:100%;height:100%;object-fit:cover;display:block}
+.t{font:500 15px/1.25 Fraunces,serif;max-width:440px}
+.st{display:inline-flex;gap:7px;align-items:center;padding:5px 11px;border-radius:99px;background:color-mix(in srgb,var(--c) 16%,transparent);font:500 12px Inter;white-space:nowrap}
+.st i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.o{color:var(--mute);text-decoration:line-through;white-space:nowrap;font-size:13px}
+.p{font:800 17px Fraunces,serif;color:var(--pr);white-space:nowrap}
+.d{display:flex;align-items:center;gap:9px;min-width:130px}
+.d b{font:800 14px Fraunces,serif;width:48px;color:var(--acc2)}.d.hot b{color:var(--acc)}
+.d span{flex:1;height:8px;border-radius:9px;background:color-mix(in srgb,var(--mute) 26%,transparent);overflow:hidden}
+.d span i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc),#ff3d71)}
+.sv{color:var(--acc2);font-weight:600;white-space:nowrap}
+.sp{display:flex;align-items:center;justify-content:flex-end;gap:10px}.sp svg{width:120px;height:34px;flex:none}
+table.single .c-store{display:none}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:10px;font:700 12px Inter;white-space:nowrap;transition:all .15s}
+tr:hover .btn,.btn:hover{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.msg{text-align:center;padding:70px 20px;color:var(--mute);font:500 20px Fraunces,serif}.msg code{font:13px monospace;background:var(--hov);padding:3px 8px;border-radius:6px}
+.pager{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:36px 0 16px}
+.pager button{min-width:40px;height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px Inter;cursor:pointer;transition:all .15s}
+.pager button:hover:not(:disabled){border-color:var(--acc)}.pager button.on{background:linear-gradient(135deg,var(--acc),#ff3d71);border-color:transparent;color:var(--onacc);font-weight:700}
+.pager button:disabled{opacity:.35;cursor:default}.pager span{align-self:center;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 48px;color:var(--mute);font-size:13px;text-align:center}
+</style>
+<script type="application/ld+json" id="ld-books">{"@context":"https://schema.org","@type":"ItemList","name":"8-Bits - Ofertas y Descuentos en Chile","numberOfItems":67,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Alone in the Dark PS5 (Japan Import)","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/alone-in-the-dark-ps5-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/44b3965654b5.webp"}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"(USADO) Soul Hackers 2 PS5","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-soul-hackers-2-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/98c7fa42933e.webp"}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"(USADO) Rainbow Six Extraction PS5","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-rainbow-six-extraction-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/0dfdfd28e21c.webp"}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Bluey: The Videogame NSW","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bluey-the-videogame-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/cc5d7833968a.webp"}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Carcasa Acrílica Zelda BOTW para Nintendo Switch","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-acrilica-zelda-botw-para-nintendo-switch"},"image":"https://fernandoandresmunoz.github.io/imagenes/dcf26c6cad0c.webp"}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Carcasa Acrílica Splatoon 2 para Nintendo Switch","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-acrilica-splatoon-2-para-nintendo-switch"},"image":"https://fernandoandresmunoz.github.io/imagenes/8a78ce157092.webp"}},{"@type":"ListItem","position":7,"item":{"@type":"Product","name":"Shaun White Skateboarding PS3","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/shaun-white-skateboarding-ps3"},"image":"https://fernandoandresmunoz.github.io/imagenes/649ded3ad0ff.webp"}},{"@type":"ListItem","position":8,"item":{"@type":"Product","name":"NEO: The World Ends with You PS4","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/neo-the-world-ends-with-you-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/a4fe3d516b91.webp"}},{"@type":"ListItem","position":9,"item":{"@type":"Product","name":"Pokémon Poke-Nade Poké Ball Takara Tomy","offers":{"@type":"Offer","price":"89990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/pokemon-poke-nade-poke-ball-takara-tomy"},"image":"https://fernandoandresmunoz.github.io/imagenes/4ee61386c73e.webp"}},{"@type":"ListItem","position":10,"item":{"@type":"Product","name":"Bomb Rush Cyberfunk PS5","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bomb-rush-cyberfunk-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/f858507986cf.webp"}},{"@type":"ListItem","position":11,"item":{"@type":"Product","name":"Persona 3 Reload PS4","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/persona-3-reload-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/c1dcd7634575.webp"}},{"@type":"ListItem","position":12,"item":{"@type":"Product","name":"Transmisor Bluetooth compacto de audio para Nintendo Switch / PS4 / PS5 / PC","offers":{"@type":"Offer","price":"19990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/transmisor-bluetooth-compacto-de-audio-para-nintendo-switch-ps4-ps5-pc"},"image":"https://fernandoandresmunoz.github.io/imagenes/ba34c526b2be.webp"}},{"@type":"ListItem","position":13,"item":{"@type":"Product","name":"Kena Bridge of Spirits Deluxe Edition PS4 (Euro Import)","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/kena-bridge-of-spirits-deluxe-edition-ps4-euro"},"image":"https://fernandoandresmunoz.github.io/imagenes/fc525c4582c7.webp"}},{"@type":"ListItem","position":14,"item":{"@type":"Product","name":"Deathloop PS5","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/deathloop-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/beb87c5c308f.webp"}},{"@type":"ListItem","position":15,"item":{"@type":"Product","name":"Carcasa protectora Shiba Inu Nintendo Switch LITE","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-protectora-shiba-inu-nintendo-switch-lite"},"image":"https://fernandoandresmunoz.github.io/imagenes/30ba0a842830.webp"}},{"@type":"ListItem","position":16,"item":{"@type":"Product","name":"Carcasa protectora Mario M para Nintendo Switch LITE","offers":{"@type":"Offer","price":"12990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-protectora-mario-m-para-nintendo-switch-lite"},"image":"https://fernandoandresmunoz.github.io/imagenes/bde839ce7c38.webp"}},{"@type":"ListItem","position":17,"item":{"@type":"Product","name":"Carcasa protectora para Nintendo Switch Animal Crossing","offers":{"@type":"Offer","price":"12990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-protectora-para-nintendo-switch-animal-crossing"},"image":"https://fernandoandresmunoz.github.io/imagenes/01f9bdfb1769.webp"}},{"@type":"ListItem","position":18,"item":{"@type":"Product","name":"Carcasa protectora Kirby para Nintendo Switch LITE","offers":{"@type":"Offer","price":"12990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/carcasa-protectora-kirby-para-nintendo-switch-lite"},"image":"https://fernandoandresmunoz.github.io/imagenes/4f1375a63028.webp"}},{"@type":"ListItem","position":19,"item":{"@type":"Product","name":"(USADO) Balan Wonderworld PS5","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/balan-wonderworld-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/514225899d00.webp"}},{"@type":"ListItem","position":20,"item":{"@type":"Product","name":"(USADO) Back 4 Blood PS5","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-back-4-blood-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/ab87441f67cc.webp"}},{"@type":"ListItem","position":21,"item":{"@type":"Product","name":"Assassin's Creed Valhalla PS5","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/assassins-creed-valhalla-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/24958ee83ad6.webp"}},{"@type":"ListItem","position":22,"item":{"@type":"Product","name":"Kung Fu Rider PS3","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/kung-fu-raider-ps3"},"image":"https://fernandoandresmunoz.github.io/imagenes/18bc535f9f2b.webp"}},{"@type":"ListItem","position":23,"item":{"@type":"Product","name":"Naruto Shippuden Ultimate Ninja Storm Trilogy PS4 (Euro Import)","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/naruto-shippuden-ultimate-ninja-storm-trilogy-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/6428ab7b7cd8.webp"}},{"@type":"ListItem","position":24,"item":{"@type":"Product","name":"NEO: The World Ends with You PS4 (Euro Import)","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/neo-the-world-ends-with-you-ps4-euro"},"image":"https://fernandoandresmunoz.github.io/imagenes/958959b7ac82.webp"}},{"@type":"ListItem","position":25,"item":{"@type":"Product","name":"Cris Tales PS4","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/cris-tales-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/d63d77b92d44.webp"}},{"@type":"ListItem","position":26,"item":{"@type":"Product","name":"Mafia Definitive Edition PS4","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/mafia-definitive-edition-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/c54bd5653bf3.webp"}},{"@type":"ListItem","position":27,"item":{"@type":"Product","name":"Gundam Versus PS4","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/gundam-versus-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/a70d020f6a12.webp"}},{"@type":"ListItem","position":28,"item":{"@type":"Product","name":"Capcom Fighting Collection PS4","offers":{"@type":"Offer","price":"59990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/capcom-fighting-collection-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/ae1280cc8b5e.webp"}},{"@type":"ListItem","position":29,"item":{"@type":"Product","name":"Bloodstained: Curse of the Moon Chronicles Limited Edition NSW (Japan Import)","offers":{"@type":"Offer","price":"79990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bloodstained-curse-of-the-moon-chronicles-limited-edition-nsw-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/90a8974a031b.webp"}},{"@type":"ListItem","position":30,"item":{"@type":"Product","name":"(USADO) One Piece Odyssey PS4 (Euro Import)","offers":{"@type":"Offer","price":"19990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-one-piece-odyssey-ps4-euro-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/48ff7695c283.webp"}},{"@type":"ListItem","position":31,"item":{"@type":"Product","name":"Elden Ring PS5","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/elden-ring-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/838eed072964.webp"}},{"@type":"ListItem","position":32,"item":{"@type":"Product","name":"JoJo's Bizarre Adventure: Eyes of Heaven PS4 (Euro Import)","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/jojo-bizarre-adventure-eyes-of-heaven-ps4-descontinuado"},"image":"https://fernandoandresmunoz.github.io/imagenes/c11dadd8d40c.webp"}},{"@type":"ListItem","position":33,"item":{"@type":"Product","name":"(USADO) Final Fantasy VII Rebirth PS5","offers":{"@type":"Offer","price":"42990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-final-fantasy-vii-rebirth-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/3b5f756cc9a6.webp"}},{"@type":"ListItem","position":34,"item":{"@type":"Product","name":"Dragon Quest III HD-2D Remake PS5 (Japan Import)","offers":{"@type":"Offer","price":"54990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/dragon-quest-iii-hd-2d-remake-ps5-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/d3c828b5e16c.webp"}},{"@type":"ListItem","position":35,"item":{"@type":"Product","name":"(USADO) Life is Strange True Colors PS4","offers":{"@type":"Offer","price":"24990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-life-is-strange-true-colors-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/997da1d4f10b.webp"}},{"@type":"ListItem","position":36,"item":{"@type":"Product","name":"Dragon Ball: Sparking! Zero PS5 (Japan Import)","offers":{"@type":"Offer","price":"59990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/dragon-ball-sparking-zero-ps5-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/7d5ed2c6388f.webp"}},{"@type":"ListItem","position":37,"item":{"@type":"Product","name":"LEGO Star Wars: Skywalker Saga PS4 (Euro Import)","offers":{"@type":"Offer","price":"24990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/lego-star-wars-skywalker-saga-ps4-euro"},"image":"https://fernandoandresmunoz.github.io/imagenes/df3feab8a7a8.webp"}},{"@type":"ListItem","position":38,"item":{"@type":"Product","name":"Bloodborne GOTY PS4 (Euro Import)","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bloodborne-goty-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/f4427045b9b2.webp"}},{"@type":"ListItem","position":39,"item":{"@type":"Product","name":"Metaphor: ReFantazio PS4 (Japan Import)","offers":{"@type":"Offer","price":"64990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/metaphor-refantazio-ps4-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/4686cabcb91f.webp"}},{"@type":"ListItem","position":40,"item":{"@type":"Product","name":"(USADO) Silent Hill f PS5","offers":{"@type":"Offer","price":"44990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-silent-hill-f-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/43a22b277394.webp"}},{"@type":"ListItem","position":41,"item":{"@type":"Product","name":"Digimon Story Time Stranger PS5","offers":{"@type":"Offer","price":"69990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/digimon-story-time-stranger-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/411f1dffff3a.webp"}},{"@type":"ListItem","position":42,"item":{"@type":"Product","name":"Ace Attorney Investigations Collection NSW (Japan Import)","offers":{"@type":"Offer","price":"49990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/ace-attorney-investigations-collection-nsw-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/09374961a366.webp"}},{"@type":"ListItem","position":43,"item":{"@type":"Product","name":"(USADO) Persona 3 Reload PS5","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-persona-3-reload-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/dff33c487478.webp"}},{"@type":"ListItem","position":44,"item":{"@type":"Product","name":"Bloodstained: Curse of the Moon Chronicles NSW (Japan Import)","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bloodstained-curse-of-the-moon-chronicles-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/4044b28477f1.webp"}},{"@type":"ListItem","position":45,"item":{"@type":"Product","name":"Bloodstained Ritual Of The Night PS4 (Euro Import)","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bloodstained-ritual-of-the-night-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/776c2003a457.webp"}},{"@type":"ListItem","position":46,"item":{"@type":"Product","name":"Lego City Undercover PS4","offers":{"@type":"Offer","price":"19990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/lego-city-undercover-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/c09c17c4fa7a.webp"}},{"@type":"ListItem","position":47,"item":{"@type":"Product","name":"Cris Tales PS5","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/cris-tales-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/c1d41c835070.webp"}},{"@type":"ListItem","position":48,"item":{"@type":"Product","name":"Alone in the Dark PS5","offers":{"@type":"Offer","price":"59990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/alone-in-the-dark-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/c34347e80ced.webp"}},{"@type":"ListItem","position":49,"item":{"@type":"Product","name":"Bomb Rush Cyberfunk NSW","offers":{"@type":"Offer","price":"44990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bomb-rush-cyberfunk-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/c1d14eca328b.webp"}},{"@type":"ListItem","position":50,"item":{"@type":"Product","name":"Alone in the Dark Collector's Edition PS5","offers":{"@type":"Offer","price":"249990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/alone-in-the-dark-collectors-edition-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/0a3ca07372a2.webp"}},{"@type":"ListItem","position":51,"item":{"@type":"Product","name":"Bendy And The Ink Machine NSW","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/bendy-and-the-ink-machine-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/465963281558.webp"}},{"@type":"ListItem","position":52,"item":{"@type":"Product","name":"Overcooked! + Overcooked! 2 PS4","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/overcooked-overcooked-2-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/57e51dce159c.webp"}},{"@type":"ListItem","position":53,"item":{"@type":"Product","name":"Hades PS4","offers":{"@type":"Offer","price":"29990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/hades-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/d49d0cd27ef0.webp"}},{"@type":"ListItem","position":54,"item":{"@type":"Product","name":"(USADO) The Shapeshifting Detective NSW","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-the-shapeshifting-detective-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/c6738e6bd951.webp"}},{"@type":"ListItem","position":55,"item":{"@type":"Product","name":"Minecraft Starter Collection PS4 (Euro Import)","offers":{"@type":"Offer","price":"34990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/minecraft-starter-collection-ps4"},"image":"https://fernandoandresmunoz.github.io/imagenes/e7a863fbef4a.webp"}},{"@type":"ListItem","position":56,"item":{"@type":"Product","name":"Nintendo Sound Clock: Alarmo","offers":{"@type":"Offer","price":"169990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/nintendo-sound-clock-alarmo"},"image":"https://fernandoandresmunoz.github.io/imagenes/3999fc1bfe7f.webp"}},{"@type":"ListItem","position":57,"item":{"@type":"Product","name":"Persona 5 Royal Edition PS4 (Euro Import)","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/persona-5-royal-edition-ps4-euro"},"image":"https://fernandoandresmunoz.github.io/imagenes/7ba73592cee5.webp"}},{"@type":"ListItem","position":58,"item":{"@type":"Product","name":"Apsulov End of Gods PS5","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/apsulov-end-of-gods-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/38ef1056dba8.webp"}},{"@type":"ListItem","position":59,"item":{"@type":"Product","name":"Consola Playstation 5 Slim Digital + Returnal + Ratchet and Clank","offers":{"@type":"Offer","price":"499990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/consola-playstation-5-digital-returnal-ratchet-clank"},"image":"https://fernandoandresmunoz.github.io/imagenes/225c6e9613fb.webp"}},{"@type":"ListItem","position":60,"item":{"@type":"Product","name":"Death Stranding 2: On the Beach PS5","offers":{"@type":"Offer","price":"69990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/death-stranding-2-on-the-beach-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/aa132b3687bd.webp"}},{"@type":"ListItem","position":61,"item":{"@type":"Product","name":"13 Sentinels: Aegis Rim NSW","offers":{"@type":"Offer","price":"54990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/13-sentinels-aegis-rim-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/0c391c96400e.webp"}},{"@type":"ListItem","position":62,"item":{"@type":"Product","name":"(USADO) Luigi's Mansion 3 NSW","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-luigis-mansion-3-nsw"},"image":"https://fernandoandresmunoz.github.io/imagenes/1cfdd6535864.webp"}},{"@type":"ListItem","position":63,"item":{"@type":"Product","name":"Aooni NSW (Japan Import)","offers":{"@type":"Offer","price":"44990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/aooni-nsw-japan-import"},"image":"https://fernandoandresmunoz.github.io/imagenes/02eab50e64f8.webp"}},{"@type":"ListItem","position":64,"item":{"@type":"Product","name":"(USADO) Legend of Legacy HD Remastered PS5","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/usado-legend-of-legacy-hd-remastered-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/36688a84ac8f.webp"}},{"@type":"ListItem","position":65,"item":{"@type":"Product","name":"Control Inalámbrico Bluetooth 8BITDO Ultimate 2C Blue (para Nintendo Switch)","offers":{"@type":"Offer","price":"39990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/control-inalambrico-bluetooth-8bitdo-ultimate-2c-blue"},"image":"https://fernandoandresmunoz.github.io/imagenes/95188d93fdea.webp"}},{"@type":"ListItem","position":66,"item":{"@type":"Product","name":"Assassin's Creed Black Flag Resynced PS5","offers":{"@type":"Offer","price":"69990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/assassins-creed-black-flag-resynced-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/26ef7c2797c9.webp"}},{"@type":"ListItem","position":67,"item":{"@type":"Product","name":"Cronos: The New Dawn PS5","offers":{"@type":"Offer","price":"59990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"8-bits.cl"},"url":"https://8-bits.cl/products/cronos-the-new-dawn-ps5"},"image":"https://fernandoandresmunoz.github.io/imagenes/4c768d216c35.webp"}}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><span>Páginas <b>&amp;</b> Precios <em>| Monitor de Ofertas</em></span><small id="upd">cargando…</small></div>
+  <h1 id="hero-title">Los mejores descuentos en 8-Bits, <em>actualizados hoy.</em></h1>
+  <p class="lead" id="hero-desc">Ofertas destacadas con mayor variación y descuento en 8-Bits.</p>
+  <div class="stats">
+    <div id="s1">–<span>Ofertas</span></div>
+    <div id="s2">–<span>Tiendas</span></div>
+    <div id="s3">–<span>Descuento promedio</span></div>
+  </div>
+</header>
+</div>
+
+<nav class="tabs-wrap wrap" aria-label="Categorías y Tiendas">
+  <div class="tabs-scroll" id="tabs-nav"></div>
+</nav>
+
+<div class="bar"><div class="wrap">
+  <div class="row">
+    <input id="q" type="search" placeholder="Buscar..." aria-label="Buscar">
+    <select id="min" aria-label="Descuento mínimo"><option value="0">Cualquier descuento</option><option value="20">+20%</option><option value="40">+40%</option><option value="50">+50%</option><option value="70">+70%</option></select>
+    <select id="per" aria-label="Filas por página"><option>10</option><option selected>25</option><option>50</option><option value="1000">Todos</option></select>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <p class="count" id="count"></p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th data-k="title" id="col-item">Producto</th><th data-k="tienda" class="c-store">Tienda</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th class="r">Historial</th><th></th></tr></thead>
+    <tbody id="body"></tbody>
+  </table></div>
+  <nav class="pager" id="pager"></nav>
+</main>
+
+<footer class="wrap">© Páginas &amp; Precios · Monitoreo automático de ofertas en Chile. Los precios y disponibilidad son responsabilidad de cada tienda.</footer>
+
+<script>
+window.PAGE_DEFAULT_TAB = "8bits";
+const $ = id => document.getElementById(id),
+  clp = n => "$" + Math.round(n).toLocaleString("es-CL"),
+  esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const COLORS = ["#ff8a3d", "#4da3ff", "#6fe3a5", "#ff5d8f", "#b78cff", "#ffc857", "#20c997", "#fd7e14"];
+let TABS = [], currentTab = null, B = [], D = [], page = 1, store = -1, key = "descuento", dir = -1, maxD = 1;
+const tabCache = {};
+const tabPath = t => t.path || (t.html_file && t.html_file !== "index.html" ? "/" + t.html_file.replace(".html", "") : "/");
+const tabFromLocation = () => {
+  let p = location.pathname.replace("/index.html", "/").replace(".html", "");
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return TABS.find(t => tabPath(t) === p);
+};
+
+fetch("tabs.json", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(data => {
+    TABS = data.tabs || [];
+    renderTabsBar();
+    // Links viejos tipo /#abc: se llevan a la URL limpia /abc
+    const legacy = TABS.find(t => t.id === (location.hash || "").replace("#", "").trim());
+    const found = legacy || tabFromLocation();
+    const initialId = found ? found.id : (TABS.find(t => t.id === window.PAGE_DEFAULT_TAB) || TABS[0])?.id;
+    if (initialId) switchTab(initialId, false);
+    if (legacy) history.replaceState(null, "", tabPath(legacy));
+  })
+  .catch(() => {
+    // Fallback: intentar cargar libros.json directamente
+    fetch("libros.json", { cache: "no-cache" }).then(r => r.json()).then(j => {
+      initTabData({ id: "libros", name: "Libros", item_label: "Libro", headline: "Los mejores descuentos de libros en Chile", subtitle: "Librerías principales de Chile" }, j);
+    }).catch(() => {
+      $("upd").textContent = "sin datos";
+      $("body").innerHTML = `<tr><td colspan="8"><div class="msg">No pude leer los datos.<br><br>Genera las ofertas con <code>python3 script_generator.py</code>.</div></td></tr>`;
+    });
+  });
+
+function renderTabsBar() {
+  const nav = $("tabs-nav");
+  nav.innerHTML = TABS.map(t => `
+    <a class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" href="${tabPath(t)}" data-tab="${t.id}" id="tab-btn-${t.id}">
+      <span class="t-icon">${t.icon || "🏷️"}</span>
+      <span>${esc(t.name)}</span>
+      <span class="t-badge">${t.total || 0}</span>
+    </a>
+  `).join("");
+}
+
+$("tabs-nav").onclick = e => {
+  const btn = e.target.closest(".tab-btn");
+  if (!btn || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+  e.preventDefault();
+  const tid = btn.dataset.tab;
+  if (tid && !(currentTab && currentTab.id === tid)) switchTab(tid, true);
+};
+
+window.addEventListener("popstate", () => {
+  const t = tabFromLocation();
+  if (t && (!currentTab || currentTab.id !== t.id)) switchTab(t.id, false);
+});
+
+function switchTab(tabId, updateHash) {
+  const tab = TABS.find(t => t.id === tabId);
+  if (!tab) return;
+  currentTab = tab;
+  if (updateHash) {
+    history.pushState(null, "", tabPath(tab));
+  }
+  document.title = `${tab.name} | Monitor de Ofertas · Descuentos en Chile`;
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    const isAct = b.dataset.tab === tabId;
+    b.classList.toggle("active", isAct);
+    if (isAct) b.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+  });
+
+  // Actualizar hero y textos
+  $("hero-title").innerHTML = tab.headline || `Los mejores descuentos en ${esc(tab.name)}, <em>actualizados hoy.</em>`;
+  $("hero-desc").textContent = tab.subtitle || `Monitoreo de precios y descuentos en ${tab.name}.`;
+  $("col-item").dataset.l = tab.item_label || "Producto";
+  $("col-item").textContent = $("col-item").dataset.l;
+  $("q").placeholder = `Buscar en ${tab.name}...`;
+
+  if (tabCache[tabId]) {
+    initTabData(tab, tabCache[tabId]);
+  } else {
+    $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Cargando ofertas de ${esc(tab.name)}…</div></td></tr>`;
+    fetch(tab.file || `${tabId}.json`, { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(j => {
+        tabCache[tabId] = j;
+        initTabData(tab, j);
+      })
+      .catch(err => {
+        $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Error al cargar datos de ${esc(tab.name)}.</div></td></tr>`;
+      });
+  }
+}
+
+const fixUrl = b => {
+  if (!b.url) return "";
+  if (/buscalibre/i.test(b.tienda) && !/^https?:/i.test(b.url)) {
+    return new URL(b.url, "https://www.buscalibre.cl/").href;
+  }
+  return b.url;
+};
+
+function initTabData(tab, j) {
+  D = j.dominios || [];
+  document.querySelector("table").classList.toggle("single", D.length < 2);
+  const items = j.items || j.libros || [];
+  B = items.map(b => ({ ...b, ahorro: (b.promedio || 0) - (b.precio || 0), url: fixUrl(b) }));
+  maxD = Math.max(...B.map(b => b.descuento || 0), 1);
+  if (j.generated_at) {
+    $("upd").textContent = "Actualizado " + new Date(j.generated_at).toLocaleString("es-CL", { dateStyle: "medium", timeStyle: "short" });
+  }
+  $("s1").firstChild.textContent = B.length;
+  $("s2").firstChild.textContent = D.length || 1;
+  $("s3").firstChild.textContent = Math.round(B.reduce((a, b) => a + (b.descuento || 0), 0) / Math.max(B.length, 1)) + "%";
+
+  // Chips de tiendas del tab
+  if (D.length > 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = [{ name: "Todas" }, ...D].map((d, i) =>
+      `<button class="chip${i ? "" : " on"}" data-i="${i ? d.id : -1}">${i ? `<i style="--c:${COLORS[(i - 1) % COLORS.length]}"></i>` : ""}${esc(d.name)}</button>`
+    ).join("");
+  } else if (D.length === 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = `<button class="chip on" data-i="${D[0].id}"><i style="--c:${COLORS[0]}"></i>${esc(D[0].name)}</button>`;
+  } else {
+    $("chips").style.display = "none";
+    $("chips").innerHTML = "";
+  }
+
+  page = 1;
+  store = -1;
+  render();
+}
+
+const col = id => {
+  const idx = D.findIndex(d => d.id === id);
+  return COLORS[Math.max(idx, 0) % COLORS.length];
+};
+
+$("chips").onclick = e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  store = +b.dataset.i;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+  page = 1;
+  render();
+};
+
+["q", "min", "per"].forEach(id => $(id).addEventListener("input", () => { page = 1; render(); }));
+
+document.querySelector("thead").onclick = e => {
+  const h = e.target.closest("th[data-k]");
+  if (!h) return;
+  const k = h.dataset.k;
+  dir = key === k ? -dir : (k === "title" || k === "tienda" || k === "precio" || k === "promedio" ? 1 : -1);
+  key = k;
+  page = 1;
+  render();
+};
+
+// Mini gráfico del historial de precios (solo muestra la tendencia; el número que manda es el descuento).
+function spark(b) {
+  const h = b.hist;
+  if (!h || h.length < 2) return `<span class="o">—</span>`;
+  const min = Math.min(...h), max = Math.max(...h), rng = max - min, W = 130, H = 40, P = 4;
+  const pts = h.map((v, i) => `${(i / (h.length - 1) * W).toFixed(1)},${(rng === 0 ? H / 2 : H - P - (v - min) / rng * (H - 2 * P)).toFixed(1)}`).join(" ");
+  const c = "var(--dn)";
+  const tip = `Normal ${clp(b.promedio)} · mín ${clp(min)} · máx ${clp(max)} · ${h.length} registros`;
+  return `<div class="sp" title="${tip}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polygon points="${pts} ${W},${H} 0,${H}" fill="${c}" opacity=".13"/><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>`;
+}
+
+function render() {
+  const q = $("q").value.toLowerCase().trim(), m = +$("min").value, PER = +$("per").value;
+  const L = B.filter(b => (store < 0 || b.dominio_id === store) && b.descuento >= m && (!q || (b.title || "").toLowerCase().includes(q)));
+  L.sort((a, b) => (typeof a[key] === "string" ? a[key].localeCompare(b[key], "es") : a[key] - b[key]) * dir);
+  document.querySelectorAll("th[data-k]").forEach(h => {
+    h.dataset.l = h.dataset.l || h.textContent;
+    h.classList.toggle("s", h.dataset.k === key);
+    h.textContent = h.dataset.l + (h.dataset.k === key ? (dir > 0 ? " ↑" : " ↓") : "");
+  });
+  const pages = Math.max(1, Math.ceil(L.length / PER));
+  page = Math.min(page, pages);
+  const st = (page - 1) * PER;
+  $("count").innerHTML = `<b>${L.length}</b> ofertas · mostrando ${L.length ? st + 1 : 0}–${Math.min(st + PER, L.length)}`;
+
+  $("body").innerHTML = L.length ? L.slice(st, st + PER).map((b, i) => `<tr>
+    <td class="n">${st + i + 1}</td>
+    <td><div class="bk"><div class="mc">${b.thumbnail ? `<img src="${esc(b.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "📦"}</div><div class="t">${esc(b.title)}</div></div></td>
+    <td class="c-store"><span class="st" style="--c:${col(b.dominio_id)}"><i></i>${esc(b.tienda)}</span></td>
+    <td class="r p">${clp(b.precio)}</td>
+    <td><div class="d${b.descuento >= 45 ? " hot" : ""}"><b>−${Math.round(b.descuento)}%</b><span><i style="width:${b.descuento / maxD * 100}%"></i></span></div></td>
+    <td class="r sv">${clp(b.ahorro)}</td>
+    <td class="r">${spark(b)}</td>
+    <td class="r">${b.url ? `<a class="btn" href="${esc(b.url)}" target="_blank" rel="noopener" data-id="${b.id}" data-pos="${st + i + 1}">Ir a la tienda ↗</a>` : ""}</td>
+  </tr>`).join("") : `<tr><td colspan="8"><div class="msg">Nada por aquí… prueba otra búsqueda 🔍</div></td></tr>`;
+
+  const bt = (l, p, x = "") => `<button ${x} data-p="${p}">${l}</button>`, a = [bt("←", page - 1, page === 1 ? "disabled" : "")];
+  const set = [...new Set([1, 2, page - 1, page, page + 1, pages - 1, pages])].filter(x => x >= 1 && x <= pages).sort((x, y) => x - y);
+  set.forEach((x, i) => {
+    if (i && x - set[i - 1] > 1) a.push("<span>…</span>");
+    a.push(bt(x, x, x === page ? 'class="on"' : ""));
+  });
+  a.push(bt("→", page + 1, page === pages ? "disabled" : ""));
+  $("pager").innerHTML = a.join("");
+}
+
+$("pager").onclick = e => {
+  const b = e.target.closest("button");
+  if (!b || b.disabled) return;
+  page = +b.dataset.p;
+  render();
+  $("count").scrollIntoView({ behavior: "smooth" });
+};
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.btn[data-id]");
+  if (!a || typeof gtag !== "function") return;
+  const b = B.find(x => String(x.id) === a.dataset.id);
+  if (!b) return;
+  gtag("event", "select_item", {
+    item_list_name: currentTab ? currentTab.name : "Ofertas",
+    currency: "CLP",
+    items: [{ item_id: String(b.id), item_name: b.title, item_brand: b.tienda, price: Math.round(b.precio), discount: Math.round(b.ahorro), index: +a.dataset.pos }]
+  });
+});
+</script>
+</body>
+</html>

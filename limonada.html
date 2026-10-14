@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<title>Limonada | Monitor de Ofertas · Descuentos en Chile</title>
+<meta name="description" content="Ofertas destacadas con mayor variación y descuento en Limonada.">
+<link rel="canonical" href="https://fernandoandresmunoz.github.io/limonada">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag.js?id=G-CJRB34M9L8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CJRB34M9L8');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f17;--card:#121a28;--card2:#172235;--hov:#1a253a;--ink:#e9eef7;--mute:#8d99ae;--line:#223048;--acc:#ff6b3d;--acc2:#ffc857;--pr:#52e19b;--onacc:#fff;--up:#f87171;--dn:#4ade80;--fl:#94a3b8}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f9;--card:#fff;--card2:#f8fafc;--hov:#e9edf5;--ink:#0b0f17;--mute:#5a6578;--line:#dbe1ec;--acc:#ec5a2b;--acc2:#b7791f;--pr:#1f9d63;--onacc:#fff;--up:#dc2626;--dn:#16a34a;--fl:#64748b}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 Inter,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(900px 480px at 90% -10%,rgba(255,107,61,.09),transparent),radial-gradient(700px 380px at -5% 5%,rgba(82,225,155,.08),transparent)}
+.wrap{max-width:1260px;margin:auto;padding:0 20px}
+.hero{padding:44px 0 20px}
+.brand{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font:800 20px Fraunces,Georgia,serif}
+.brand b{color:var(--acc)}.brand em{font:500 14px Inter,sans-serif;color:var(--mute);font-style:normal}
+.brand small{font:500 12px Inter;color:var(--mute);border:1px solid var(--line);padding:5px 12px;border-radius:99px;background:var(--card)}
+h1{font:800 clamp(32px,5.5vw,64px)/1.05 Fraunces,Georgia,serif;letter-spacing:-.035em;margin:32px 0 14px;max-width:880px}
+h1 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);font-size:16px;line-height:1.55;max-width:680px}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats div{font:800 28px Fraunces,serif}
+.stats span{display:block;font:500 11px Inter;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+
+/* Tabs Bar */
+.tabs-wrap{margin:28px auto 16px;display:flex;justify-content:center;width:100%}
+.tabs-scroll{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:0 auto;max-width:100%}
+@media (max-width:768px){.tabs-scroll{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}}
+.tabs-scroll::-webkit-scrollbar{height:5px}
+.tabs-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tab-btn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px Inter,sans-serif;cursor:pointer;transition:all .2s ease;text-decoration:none;user-select:none}
+.tab-btn:hover{border-color:var(--acc);transform:translateY(-1px);background:var(--hov)}
+.tab-btn.active{background:linear-gradient(135deg,rgba(255,107,61,.18),rgba(255,61,113,.15));border-color:var(--acc);color:var(--ink);box-shadow:0 0 18px -4px rgba(255,107,61,.4)}
+.tab-btn .t-icon{font-size:15px;line-height:1}
+.tab-btn .t-badge{font-size:11px;font-weight:700;padding:2px 7px;border-radius:99px;background:color-mix(in srgb,var(--mute) 24%,transparent);color:var(--mute);transition:all .2s}
+.tab-btn.active .t-badge{background:var(--acc);color:#fff}
+
+/* Sticky Filter Bar */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-block:1px solid var(--line);padding:12px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:11px 15px;border-radius:12px;font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+input{flex:1 1 240px}input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,107,61,.18)}
+.chips{margin-top:10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chip{flex:none;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:99px;font:500 13px Inter;display:flex;gap:7px;align-items:center;transition:all .15s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}.chip:hover{border-color:var(--acc)}.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.count{margin:22px 0 12px;color:var(--mute)}.count b{color:var(--ink)}
+
+/* Table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th{text-align:left;font:700 11px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:15px 16px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+th[data-k]{cursor:pointer}th[data-k]:hover,th.s{color:var(--acc)}
+.r{text-align:right}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{transition:background .15s}tbody tr:hover{background:var(--hov)}tbody tr:last-child td{border-bottom:0}
+.n{color:var(--mute);width:44px}
+.bk{display:flex;gap:14px;align-items:center}
+.mc{flex:none;width:44px;height:56px;border-radius:6px;overflow:hidden;background:var(--line);box-shadow:2px 4px 10px -2px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:18px}
+.mc img{width:100%;height:100%;object-fit:cover;display:block}
+.t{font:500 15px/1.25 Fraunces,serif;max-width:440px}
+.st{display:inline-flex;gap:7px;align-items:center;padding:5px 11px;border-radius:99px;background:color-mix(in srgb,var(--c) 16%,transparent);font:500 12px Inter;white-space:nowrap}
+.st i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.o{color:var(--mute);text-decoration:line-through;white-space:nowrap;font-size:13px}
+.p{font:800 17px Fraunces,serif;color:var(--pr);white-space:nowrap}
+.d{display:flex;align-items:center;gap:9px;min-width:130px}
+.d b{font:800 14px Fraunces,serif;width:48px;color:var(--acc2)}.d.hot b{color:var(--acc)}
+.d span{flex:1;height:8px;border-radius:9px;background:color-mix(in srgb,var(--mute) 26%,transparent);overflow:hidden}
+.d span i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--acc2),var(--acc),#ff3d71)}
+.sv{color:var(--acc2);font-weight:600;white-space:nowrap}
+.sp{display:flex;align-items:center;justify-content:flex-end;gap:10px}.sp svg{width:120px;height:34px;flex:none}
+table.single .c-store{display:none}
+.btn{display:inline-block;text-decoration:none;border:1px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:10px;font:700 12px Inter;white-space:nowrap;transition:all .15s}
+tr:hover .btn,.btn:hover{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+.msg{text-align:center;padding:70px 20px;color:var(--mute);font:500 20px Fraunces,serif}.msg code{font:13px monospace;background:var(--hov);padding:3px 8px;border-radius:6px}
+.pager{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:36px 0 16px}
+.pager button{min-width:40px;height:40px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px Inter;cursor:pointer;transition:all .15s}
+.pager button:hover:not(:disabled){border-color:var(--acc)}.pager button.on{background:linear-gradient(135deg,var(--acc),#ff3d71);border-color:transparent;color:var(--onacc);font-weight:700}
+.pager button:disabled{opacity:.35;cursor:default}.pager span{align-self:center;color:var(--mute)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:28px 0 48px;color:var(--mute);font-size:13px;text-align:center}
+</style>
+<script type="application/ld+json" id="ld-books">{"@context":"https://schema.org","@type":"ItemList","name":"Limonada - Ofertas y Descuentos en Chile","numberOfItems":100,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Abrigo niña de cotelé","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/abrigo-nina-de-cotele-beige-l11102260426"},"image":"https://fernandoandresmunoz.github.io/imagenes/c7cc7b678884.webp"}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Cuello niña sherpa","offers":{"@type":"Offer","price":"2090","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/cuello-nina-sherpa-crudo-l91532260303"},"image":"https://fernandoandresmunoz.github.io/imagenes/088875c2398a.webp"}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Bota bebé repelente al agua","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-bebe-repelente-al-agua-negro-l45372260414"},"image":"https://fernandoandresmunoz.github.io/imagenes/031cbbc71942.webp"}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Bota bebé básica","offers":{"@type":"Offer","price":"9890","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-bebe-basica-dorado-l45372260689"},"image":"https://fernandoandresmunoz.github.io/imagenes/737608a218b3.webp"}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Botín bebé con flores","offers":{"@type":"Offer","price":"10490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-flores-beige-l45382260726"},"image":"https://fernandoandresmunoz.github.io/imagenes/0949c463205e.webp"}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Conjunto recién nacida con perro","offers":{"@type":"Offer","price":"7490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-recien-nacida-con-perro-beige-l13222261626"},"image":"https://fernandoandresmunoz.github.io/imagenes/6abed3a08bc8.webp"}},{"@type":"ListItem","position":7,"item":{"@type":"Product","name":"Bota niña de agua","offers":{"@type":"Offer","price":"8090","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-nina-de-agua-con-luces-rosado-l41372260302"},"image":"https://fernandoandresmunoz.github.io/imagenes/f123bdae45f1.webp"}},{"@type":"ListItem","position":8,"item":{"@type":"Product","name":"Bota niña repelente al agua","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-nina-repelente-al-agua-negro-l41372260414"},"image":"https://fernandoandresmunoz.github.io/imagenes/8c50f4e99aee.webp"}},{"@type":"ListItem","position":9,"item":{"@type":"Product","name":"Botín bebé básico","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-basico-negro-l45382261014"},"image":"https://fernandoandresmunoz.github.io/imagenes/69e33ad3eedb.webp"}},{"@type":"ListItem","position":10,"item":{"@type":"Product","name":"Parka bebé con lazos","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/parka-bebe-con-lazos-rosado-l12082260602"},"image":"https://fernandoandresmunoz.github.io/imagenes/9035cea55261.webp"}},{"@type":"ListItem","position":11,"item":{"@type":"Product","name":"Cuello niña sherpa","offers":{"@type":"Offer","price":"2790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/cuello-nina-sherpa-rosado-l91532260302"},"image":"https://fernandoandresmunoz.github.io/imagenes/5577cb006fa9.webp"}},{"@type":"ListItem","position":12,"item":{"@type":"Product","name":"Guantes niña con lazo","offers":{"@type":"Offer","price":"2390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/guantes-nina-con-lazo-cafe-l91902260387"},"image":"https://fernandoandresmunoz.github.io/imagenes/c645fb3db934.webp"}},{"@type":"ListItem","position":13,"item":{"@type":"Product","name":"Enterito recién nacida con perrito","offers":{"@type":"Offer","price":"6890","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/enterito-recien-nacida-con-perrito-palo-rosa-l13202261685"},"image":"https://fernandoandresmunoz.github.io/imagenes/395231c1e4e2.webp"}},{"@type":"ListItem","position":14,"item":{"@type":"Product","name":"Abrigo niña bicolor","offers":{"@type":"Offer","price":"15990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/abrigo-nina-bicolor-cafe-l11102260752"},"image":"https://fernandoandresmunoz.github.io/imagenes/3a7c329de398.webp"}},{"@type":"ListItem","position":15,"item":{"@type":"Product","name":"Enterito recién nacida con perrito","offers":{"@type":"Offer","price":"6890","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/enterito-recien-nacida-con-perrito-crudo-l13202261603"},"image":"https://fernandoandresmunoz.github.io/imagenes/50f4db18cd22.webp"}},{"@type":"ListItem","position":16,"item":{"@type":"Product","name":"Botín bebé con sherpa","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-sherpa-cafe-l45382260887"},"image":"https://fernandoandresmunoz.github.io/imagenes/65b4922c2022.webp"}},{"@type":"ListItem","position":17,"item":{"@type":"Product","name":"Abrigo bebé de cotelé","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/abrigo-bebe-de-cotele-palo-rosa-l12102260285"},"image":"https://fernandoandresmunoz.github.io/imagenes/3d7a4d63f322.webp"}},{"@type":"ListItem","position":18,"item":{"@type":"Product","name":"Abrigo bebé de cotelé","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/abrigo-bebe-de-cotele-beige-l12102260226"},"image":"https://fernandoandresmunoz.github.io/imagenes/d7b20815bd30.webp"}},{"@type":"ListItem","position":19,"item":{"@type":"Product","name":"Botín bebé con gato","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-gato-beige-l45382260926"},"image":"https://fernandoandresmunoz.github.io/imagenes/c93e3f7f8e00.webp"}},{"@type":"ListItem","position":20,"item":{"@type":"Product","name":"Bota niña básica","offers":{"@type":"Offer","price":"11590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-nina-basica-cafe-l41372260187"},"image":"https://fernandoandresmunoz.github.io/imagenes/943327803404.webp"}},{"@type":"ListItem","position":21,"item":{"@type":"Product","name":"Calcetín niña con lazo","offers":{"@type":"Offer","price":"990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calcetin-nina-con-lazo-blanco-l91711250103"},"image":"https://fernandoandresmunoz.github.io/imagenes/27d5f5d894fa.webp"}},{"@type":"ListItem","position":22,"item":{"@type":"Product","name":"Botín bebé alto","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-alto-palo-rosa-l45382260485"},"image":"https://fernandoandresmunoz.github.io/imagenes/a42933143c85.webp"}},{"@type":"ListItem","position":23,"item":{"@type":"Product","name":"Botín bebé básico","offers":{"@type":"Offer","price":"15590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-basico-rosado-l45382261102"},"image":"https://fernandoandresmunoz.github.io/imagenes/0e1ce266b6f6.webp"}},{"@type":"ListItem","position":24,"item":{"@type":"Product","name":"Guantes niña con perlas","offers":{"@type":"Offer","price":"2390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/guantes-nina-con-perlas-cafe-l91902260452"},"image":"https://fernandoandresmunoz.github.io/imagenes/d9e264aae19b.webp"}},{"@type":"ListItem","position":25,"item":{"@type":"Product","name":"Calcetín niña con lazo","offers":{"@type":"Offer","price":"1190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calcetin-nina-con-lazo-beige-l91712260380"},"image":"https://fernandoandresmunoz.github.io/imagenes/0e66ab8434fd.webp"}},{"@type":"ListItem","position":26,"item":{"@type":"Product","name":"Polerón bebé con conejo boho","offers":{"@type":"Offer","price":"10490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/poleron-bebe-con-conejo-boho-crudo-l12091270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/ffa064a24bc1.webp"}},{"@type":"ListItem","position":27,"item":{"@type":"Product","name":"Parka bebé animal print","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/parka-bebe-animal-print-beige-l12082260426"},"image":"https://fernandoandresmunoz.github.io/imagenes/d5fec020eba2.webp"}},{"@type":"ListItem","position":28,"item":{"@type":"Product","name":"Polera bebé con conejo","offers":{"@type":"Offer","price":"5490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-bebe-con-conejo-celeste-l12011270261"},"image":"https://fernandoandresmunoz.github.io/imagenes/a55f390e7e2f.webp"}},{"@type":"ListItem","position":29,"item":{"@type":"Product","name":"Conjunto bebé con estampado","offers":{"@type":"Offer","price":"14490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-bebe-con-estampado-coral-l12221270478"},"image":"https://fernandoandresmunoz.github.io/imagenes/a211836bf7f7.webp"}},{"@type":"ListItem","position":30,"item":{"@type":"Product","name":"Parka bebé engomada","offers":{"@type":"Offer","price":"11390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/parka-bebe-engomada-beige-l12082260526"},"image":"https://fernandoandresmunoz.github.io/imagenes/0c44de9aab3c.webp"}},{"@type":"ListItem","position":31,"item":{"@type":"Product","name":"Conjunto recién nacida floreado","offers":{"@type":"Offer","price":"11490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-recien-nacida-floreado-celeste-l13221270161"},"image":"https://fernandoandresmunoz.github.io/imagenes/9a7e7ece840f.webp"}},{"@type":"ListItem","position":32,"item":{"@type":"Product","name":"Conjunto bebé boho","offers":{"@type":"Offer","price":"14490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-bebe-boho-crudo-l12221270203"},"image":"https://fernandoandresmunoz.github.io/imagenes/1255079d19eb.webp"}},{"@type":"ListItem","position":33,"item":{"@type":"Product","name":"Guantes niña con lazo","offers":{"@type":"Offer","price":"2990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/guantes-nina-con-lazo-rosado-l91902260302"},"image":"https://fernandoandresmunoz.github.io/imagenes/2762189ef55d.webp"}},{"@type":"ListItem","position":34,"item":{"@type":"Product","name":"Bota recién nacida con sherpa","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-recien-nacida-con-sherpa-rosado-l43372260402"},"image":"https://fernandoandresmunoz.github.io/imagenes/1fdc9dd59d91.webp"}},{"@type":"ListItem","position":35,"item":{"@type":"Product","name":"Enterito recién nacida de denim...","offers":{"@type":"Offer","price":"12490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/enterito-recien-nacida-de-denim-con-flores-azul-marino-l13201270309"},"image":"https://fernandoandresmunoz.github.io/imagenes/3dde2229e88f.webp"}},{"@type":"ListItem","position":36,"item":{"@type":"Product","name":"Polera bebé con estampado","offers":{"@type":"Offer","price":"4490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-bebe-con-estampado-crudo-l12011270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/816fd56e22d3.webp"}},{"@type":"ListItem","position":37,"item":{"@type":"Product","name":"Cintillo niña con flores","offers":{"@type":"Offer","price":"2490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/cintillo-nina-con-flores-crudo-l91601270403"},"image":"https://fernandoandresmunoz.github.io/imagenes/8f28f74fde63.webp"}},{"@type":"ListItem","position":38,"item":{"@type":"Product","name":"Botín niña básico","offers":{"@type":"Offer","price":"15590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-nina-basico-rosado-l41382260902"},"image":"https://fernandoandresmunoz.github.io/imagenes/ee4b2af3a724.webp"}},{"@type":"ListItem","position":39,"item":{"@type":"Product","name":"Enterito recién nacida tejido con...","offers":{"@type":"Offer","price":"11490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/enterito-recien-nacida-tejido-con-flores-celeste-l13201270261"},"image":"https://fernandoandresmunoz.github.io/imagenes/f44f5058c71e.webp"}},{"@type":"ListItem","position":40,"item":{"@type":"Product","name":"Buzo bebé con conejo","offers":{"@type":"Offer","price":"14490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/buzo-bebe-con-conejo-azul-marino-l12191270159"},"image":"https://fernandoandresmunoz.github.io/imagenes/d48eadbe2f8a.webp"}},{"@type":"ListItem","position":41,"item":{"@type":"Product","name":"Chaqueta bebé animal print","offers":{"@type":"Offer","price":"14390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-animal-print-negro-l12072260814"},"image":"https://fernandoandresmunoz.github.io/imagenes/ce2ecb87536a.webp"}},{"@type":"ListItem","position":42,"item":{"@type":"Product","name":"Conjunto niña boho","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-nina-boho-crudo-l11221270203"},"image":"https://fernandoandresmunoz.github.io/imagenes/edb8257de2da.webp"}},{"@type":"ListItem","position":43,"item":{"@type":"Product","name":"Body bebé acanalado","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/body-bebe-acanalado-beige-l12032260526"},"image":"https://fernandoandresmunoz.github.io/imagenes/de3a8f9aa0a1.webp"}},{"@type":"ListItem","position":44,"item":{"@type":"Product","name":"Chaqueta bebé con lazos","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-con-lazos-crudo-l12072260903"},"image":"https://fernandoandresmunoz.github.io/imagenes/7f30fa6a0fec.webp"}},{"@type":"ListItem","position":45,"item":{"@type":"Product","name":"Bota recién nacida básica","offers":{"@type":"Offer","price":"5990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-recien-nacida-basica-rosado-l43372260602"},"image":"https://fernandoandresmunoz.github.io/imagenes/70ff9ea1ae18.webp"}},{"@type":"ListItem","position":46,"item":{"@type":"Product","name":"Polerón niña con conejo boho","offers":{"@type":"Offer","price":"11490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/poleron-nina-con-conejo-boho-crudo-l11091270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/d5c0b1bcb736.webp"}},{"@type":"ListItem","position":47,"item":{"@type":"Product","name":"Bota bebé básica","offers":{"@type":"Offer","price":"13490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bota-bebe-basica-cafe-l45372260587"},"image":"https://fernandoandresmunoz.github.io/imagenes/ca033b50ccf3.webp"}},{"@type":"ListItem","position":48,"item":{"@type":"Product","name":"Chaqueta bebé con lazos","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-con-lazos-palo-rosa-l12072260985"},"image":"https://fernandoandresmunoz.github.io/imagenes/ad65cd3efebf.webp"}},{"@type":"ListItem","position":49,"item":{"@type":"Product","name":"Botín bebé con flores","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-flores-rosado-l45382260502"},"image":"https://fernandoandresmunoz.github.io/imagenes/10e23ad9dd3d.webp"}},{"@type":"ListItem","position":50,"item":{"@type":"Product","name":"Chaqueta recién nacida con rombos","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-recien-nacida-con-rombos-crudo-l13072260303"},"image":"https://fernandoandresmunoz.github.io/imagenes/e8bca20f9d70.webp"}},{"@type":"ListItem","position":51,"item":{"@type":"Product","name":"Conjunto bebé boho con flores","offers":{"@type":"Offer","price":"14490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-bebe-boho-con-flores-crudo-l12221270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/8dedab135fd6.webp"}},{"@type":"ListItem","position":52,"item":{"@type":"Product","name":"Chaqueta bebé niña con perritos","offers":{"@type":"Offer","price":"14390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-nina-con-perritos-l1207i250942-coral"},"image":"https://fernandoandresmunoz.github.io/imagenes/fe6586655073.webp"}},{"@type":"ListItem","position":53,"item":{"@type":"Product","name":"Polera bebé con estampado","offers":{"@type":"Offer","price":"4490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-bebe-con-estampado-coral-l12011270178"},"image":"https://fernandoandresmunoz.github.io/imagenes/3b603e362040.webp"}},{"@type":"ListItem","position":54,"item":{"@type":"Product","name":"Vestido bebé de denim","offers":{"@type":"Offer","price":"15590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-bebe-de-denim-azul-marino-l12131270309"},"image":"https://fernandoandresmunoz.github.io/imagenes/b5496d430ece.webp"}},{"@type":"ListItem","position":55,"item":{"@type":"Product","name":"Enterito recién nacida con perro","offers":{"@type":"Offer","price":"7990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/enterito-recien-nacida-con-perro-beige-l13202261426"},"image":"https://fernandoandresmunoz.github.io/imagenes/0e896e4f8549.webp"}},{"@type":"ListItem","position":56,"item":{"@type":"Product","name":"Conjunto niña boho con flores","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-nina-boho-con-flores-crudo-l11221270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/5701c8a2802a.webp"}},{"@type":"ListItem","position":57,"item":{"@type":"Product","name":"Calza bebé acanalada","offers":{"@type":"Offer","price":"4990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calza-bebe-acanalada-azul-l12721270258"},"image":"https://fernandoandresmunoz.github.io/imagenes/fd7a176d71b8.webp"}},{"@type":"ListItem","position":58,"item":{"@type":"Product","name":"Polera bebé con corazón en...","offers":{"@type":"Offer","price":"6590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-bebe-con-corazon-en-macrame-crudo-l12011270203"},"image":"https://fernandoandresmunoz.github.io/imagenes/d14a57101598.webp"}},{"@type":"ListItem","position":59,"item":{"@type":"Product","name":"Jeans bebé acampanado con flores","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/jeans-bebe-acampanado-con-flores-azul-marino-l12111270109"},"image":"https://fernandoandresmunoz.github.io/imagenes/10f785ed4995.webp"}},{"@type":"ListItem","position":60,"item":{"@type":"Product","name":"Buzo bebé con conejo","offers":{"@type":"Offer","price":"17390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/buzo-bebe-con-conejo-coral-l12191270178"},"image":"https://fernandoandresmunoz.github.io/imagenes/96ca0a8b32a9.webp"}},{"@type":"ListItem","position":61,"item":{"@type":"Product","name":"Botín recién nacida con perro","offers":{"@type":"Offer","price":"6490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-recien-nacida-con-perro-dorado-l43382260589"},"image":"https://fernandoandresmunoz.github.io/imagenes/9cb60b90aec8.webp"}},{"@type":"ListItem","position":62,"item":{"@type":"Product","name":"Buzo recién nacida floreado","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/buzo-recien-nacida-floreado-coral-l13191270178"},"image":"https://fernandoandresmunoz.github.io/imagenes/dc141eecd442.webp"}},{"@type":"ListItem","position":63,"item":{"@type":"Product","name":"Chaqueta niña boho de denim","offers":{"@type":"Offer","price":"17990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-nina-boho-de-denim-celeste-l11071270374"},"image":"https://fernandoandresmunoz.github.io/imagenes/f66e659d8f80.webp"}},{"@type":"ListItem","position":64,"item":{"@type":"Product","name":"Chaqueta bebé de denim con...","offers":{"@type":"Offer","price":"17390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-de-denim-con-vuelos-azul-marino-l12071270409"},"image":"https://fernandoandresmunoz.github.io/imagenes/eb8e86e1a139.webp"}},{"@type":"ListItem","position":65,"item":{"@type":"Product","name":"Polera niña con conejo y...","offers":{"@type":"Offer","price":"7790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-nina-con-conejo-y-vuelos-azul-l11011270458"},"image":"https://fernandoandresmunoz.github.io/imagenes/bbad9a818f9e.webp"}},{"@type":"ListItem","position":66,"item":{"@type":"Product","name":"Vestido niña de denim","offers":{"@type":"Offer","price":"16190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-nina-de-denim-azul-marino-l11131270309"},"image":"https://fernandoandresmunoz.github.io/imagenes/fe8252cf275b.webp"}},{"@type":"ListItem","position":67,"item":{"@type":"Product","name":"Abrigo bebé con lazos","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/abrigo-bebe-con-lazos-crudo-l12102260103"},"image":"https://fernandoandresmunoz.github.io/imagenes/a8c155218b65.webp"}},{"@type":"ListItem","position":68,"item":{"@type":"Product","name":"Vestido niña de denim","offers":{"@type":"Offer","price":"16190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-nina-de-denim-celeste-l11131270374"},"image":"https://fernandoandresmunoz.github.io/imagenes/4e7c72ec5ddf.webp"}},{"@type":"ListItem","position":69,"item":{"@type":"Product","name":"Chaqueta niña de denim","offers":{"@type":"Offer","price":"17990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-nina-de-denim-azul-marino-l11071270109"},"image":"https://fernandoandresmunoz.github.io/imagenes/205f456e942e.webp"}},{"@type":"ListItem","position":70,"item":{"@type":"Product","name":"Botín bebé con lazo","offers":{"@type":"Offer","price":"13990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-lazo-beige-l45382260126"},"image":"https://fernandoandresmunoz.github.io/imagenes/1ef2e535ea1e.webp"}},{"@type":"ListItem","position":71,"item":{"@type":"Product","name":"Conjunto recién nacida de denim...","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/conjunto-recien-nacida-de-denim-con-conejo-celeste-l13221270361"},"image":"https://fernandoandresmunoz.github.io/imagenes/e56442a68265.webp"}},{"@type":"ListItem","position":72,"item":{"@type":"Product","name":"Calcetín recién nacida con oso","offers":{"@type":"Offer","price":"1190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calcetin-recien-nacida-con-oso-rosado-l93712260202"},"image":"https://fernandoandresmunoz.github.io/imagenes/6b46140cbac4.webp"}},{"@type":"ListItem","position":73,"item":{"@type":"Product","name":"Calzas niña con encaje","offers":{"@type":"Offer","price":"6590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calzas-nina-con-encaje-beige-l11721270626"},"image":"https://fernandoandresmunoz.github.io/imagenes/a86ae6596023.webp"}},{"@type":"ListItem","position":74,"item":{"@type":"Product","name":"Calzas niña con encaje","offers":{"@type":"Offer","price":"6590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calzas-nina-con-encaje-negro-l11721270614"},"image":"https://fernandoandresmunoz.github.io/imagenes/a4b72e8e05f6.webp"}},{"@type":"ListItem","position":75,"item":{"@type":"Product","name":"Calzas niña capri","offers":{"@type":"Offer","price":"7790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calzas-nina-capri-l11721270526"},"image":"https://fernandoandresmunoz.github.io/imagenes/17e00d356bdf.webp"}},{"@type":"ListItem","position":76,"item":{"@type":"Product","name":"Jeans bebé flare con lazos","offers":{"@type":"Offer","price":"13190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/jeans-bebe-flare-con-lazos-celeste-l12111270674"},"image":"https://fernandoandresmunoz.github.io/imagenes/8e91a3148bef.webp"}},{"@type":"ListItem","position":77,"item":{"@type":"Product","name":"Vestido recién nacida de denim...","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-recien-nacida-de-denim-con-lazos-celeste-l13131270374"},"image":"https://fernandoandresmunoz.github.io/imagenes/b22553fbcc60.webp"}},{"@type":"ListItem","position":78,"item":{"@type":"Product","name":"Polera bebé con lazo de...","offers":{"@type":"Offer","price":"6590","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/polera-bebe-con-lazo-de-lentejuelas-rosado-l12011270602"},"image":"https://fernandoandresmunoz.github.io/imagenes/688903562998.webp"}},{"@type":"ListItem","position":79,"item":{"@type":"Product","name":"Zapatilla bebé animal print","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/zapatilla-bebe-animal-print-blanco-l45392260701"},"image":"https://fernandoandresmunoz.github.io/imagenes/173895c7b724.webp"}},{"@type":"ListItem","position":80,"item":{"@type":"Product","name":"Buzo recién nacida floreado","offers":{"@type":"Offer","price":"14990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/buzo-recien-nacida-floreado-celeste-l13191270161"},"image":"https://fernandoandresmunoz.github.io/imagenes/73c00b187bd2.webp"}},{"@type":"ListItem","position":81,"item":{"@type":"Product","name":"Botín bebé niña con mariposa","offers":{"@type":"Offer","price":"10490","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/botin-bebe-con-mariposa-rojo-l45382250282"},"image":"https://fernandoandresmunoz.github.io/imagenes/74ec07168caa.webp"}},{"@type":"ListItem","position":82,"item":{"@type":"Product","name":"Chaleco bebé cuello alto","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaleco-bebe-cuello-alto-crudo-l12062260403"},"image":"https://fernandoandresmunoz.github.io/imagenes/42e135e618fe.webp"}},{"@type":"ListItem","position":83,"item":{"@type":"Product","name":"Vestido recién nacida con vuelos","offers":{"@type":"Offer","price":"7990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-recien-nacida-con-vuelos-crudo-l13131261903"},"image":"https://fernandoandresmunoz.github.io/imagenes/d4dcfd7de3fe.webp"}},{"@type":"ListItem","position":84,"item":{"@type":"Product","name":"Pack calcetín recién nacida 3...","offers":{"@type":"Offer","price":"4190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pack-calcetin-recien-nacida-3-pares-varios-l93772260399"},"image":"https://fernandoandresmunoz.github.io/imagenes/18597bf210d1.webp"}},{"@type":"ListItem","position":85,"item":{"@type":"Product","name":"Pack calcetín recién nacida 5...","offers":{"@type":"Offer","price":"6290","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pack-calcetin-recien-nacida-5-pares-varios-l93772260699"},"image":"https://fernandoandresmunoz.github.io/imagenes/64eff8e6fc16.webp"}},{"@type":"ListItem","position":86,"item":{"@type":"Product","name":"Pack calcetín niña 3 pares","offers":{"@type":"Offer","price":"4190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pack-calcetin-nina-3-pares-varios-l91772260699"},"image":"https://fernandoandresmunoz.github.io/imagenes/bf5427250c8d.webp"}},{"@type":"ListItem","position":87,"item":{"@type":"Product","name":"Pack babero recién nacida 2...","offers":{"@type":"Offer","price":"6990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pack-babero-recien-nacida-2-unidades-crudo-l93932260303"},"image":"https://fernandoandresmunoz.github.io/imagenes/5ae5d5533802.webp"}},{"@type":"ListItem","position":88,"item":{"@type":"Product","name":"Pinche recién nacida con flores","offers":{"@type":"Offer","price":"2790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pinche-recien-nacida-con-flores-crudo-l93651270203"},"image":"https://fernandoandresmunoz.github.io/imagenes/f8590d06c265.webp"}},{"@type":"ListItem","position":89,"item":{"@type":"Product","name":"Chaleco bebé cardigan con bordados","offers":{"@type":"Offer","price":"16090","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaleco-bebe-cardigan-con-bordados-crudo-l12061270103"},"image":"https://fernandoandresmunoz.github.io/imagenes/82ecb65268cb.webp"}},{"@type":"ListItem","position":90,"item":{"@type":"Product","name":"Panty recién nacida con lazo","offers":{"@type":"Offer","price":"4190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/panty-recien-nacida-con-lazo-crudo-l93702260403"},"image":"https://fernandoandresmunoz.github.io/imagenes/cee294fe71af.webp"}},{"@type":"ListItem","position":91,"item":{"@type":"Product","name":"Chaqueta bebé aviadora de gamuza","offers":{"@type":"Offer","price":"14790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-aviadora-de-gamuza-negro-l12072260714"},"image":"https://fernandoandresmunoz.github.io/imagenes/ba520209101f.webp"}},{"@type":"ListItem","position":92,"item":{"@type":"Product","name":"Bailarina Con Rosas y Ositos...","offers":{"@type":"Offer","price":"9990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/bailarina-con-rosas-y-ositos-bebe-nina-palo-rosa-limonada-l45401230785"},"image":"https://fernandoandresmunoz.github.io/imagenes/507d40336702.webp"}},{"@type":"ListItem","position":93,"item":{"@type":"Product","name":"Vestido niña con lazo","offers":{"@type":"Offer","price":"11990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-nina-con-lazo-rosado-l11131261702"},"image":"https://fernandoandresmunoz.github.io/imagenes/4fa81a3fd847.webp"}},{"@type":"ListItem","position":94,"item":{"@type":"Product","name":"Panty niña con lazo","offers":{"@type":"Offer","price":"4190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/panty-nina-con-lazo-crudo-l91702260303"},"image":"https://fernandoandresmunoz.github.io/imagenes/9d5eac8d5a39.webp"}},{"@type":"ListItem","position":95,"item":{"@type":"Product","name":"Chaqueta bebé boho con corazones","offers":{"@type":"Offer","price":"17390","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/chaqueta-bebe-boho-con-corazones-celeste-l12071270174"},"image":"https://fernandoandresmunoz.github.io/imagenes/47600324fa3b.webp"}},{"@type":"ListItem","position":96,"item":{"@type":"Product","name":"Pinche recién nacida con flores","offers":{"@type":"Offer","price":"2790","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/pinche-recien-nacida-con-flores-rosado-l93651270202"},"image":"https://fernandoandresmunoz.github.io/imagenes/0b1c07345264.webp"}},{"@type":"ListItem","position":97,"item":{"@type":"Product","name":"Jeans niña acampanado con flores","offers":{"@type":"Offer","price":"16090","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/jeans-nina-acampanado-con-flores-celeste-l11111270174"},"image":"https://fernandoandresmunoz.github.io/imagenes/9b816b232c0a.webp"}},{"@type":"ListItem","position":98,"item":{"@type":"Product","name":"Calcetín Niña Trenzado","offers":{"@type":"Offer","price":"990","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/calcetin-nina-trenzado-blanco-l91712240403"},"image":"https://fernandoandresmunoz.github.io/imagenes/7f5cebc51841.webp"}},{"@type":"ListItem","position":99,"item":{"@type":"Product","name":"Babero recién nacida de conejo","offers":{"@type":"Offer","price":"4890","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/babero-recien-nacida-de-conejo-coral-l93871270178"},"image":"https://fernandoandresmunoz.github.io/imagenes/7a3664a21305.webp"}},{"@type":"ListItem","position":100,"item":{"@type":"Product","name":"Vestido bebé de denim con...","offers":{"@type":"Offer","price":"18190","priceCurrency":"CLP","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"limonada.cl"},"url":"https://limonada.cl/products/vestido-bebe-de-denim-con-bordados-celeste-l12131270174"},"image":"https://fernandoandresmunoz.github.io/imagenes/cab0cd8fa5f2.webp"}}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="brand"><span>Páginas <b>&amp;</b> Precios <em>| Monitor de Ofertas</em></span><small id="upd">cargando…</small></div>
+  <h1 id="hero-title">Los mejores descuentos en Limonada, <em>actualizados hoy.</em></h1>
+  <p class="lead" id="hero-desc">Ofertas destacadas con mayor variación y descuento en Limonada.</p>
+  <div class="stats">
+    <div id="s1">–<span>Ofertas</span></div>
+    <div id="s2">–<span>Tiendas</span></div>
+    <div id="s3">–<span>Descuento promedio</span></div>
+  </div>
+</header>
+</div>
+
+<nav class="tabs-wrap wrap" aria-label="Categorías y Tiendas">
+  <div class="tabs-scroll" id="tabs-nav"></div>
+</nav>
+
+<div class="bar"><div class="wrap">
+  <div class="row">
+    <input id="q" type="search" placeholder="Buscar..." aria-label="Buscar">
+    <select id="min" aria-label="Descuento mínimo"><option value="0">Cualquier descuento</option><option value="20">+20%</option><option value="40">+40%</option><option value="50">+50%</option><option value="70">+70%</option></select>
+    <select id="per" aria-label="Filas por página"><option>10</option><option selected>25</option><option>50</option><option value="1000">Todos</option></select>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <p class="count" id="count"></p>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th data-k="title" id="col-item">Producto</th><th data-k="tienda" class="c-store">Tienda</th><th class="r" data-k="precio">Precio</th><th data-k="descuento">Descuento</th><th class="r" data-k="ahorro">Ahorras</th><th class="r">Historial</th><th></th></tr></thead>
+    <tbody id="body"></tbody>
+  </table></div>
+  <nav class="pager" id="pager"></nav>
+</main>
+
+<footer class="wrap">© Páginas &amp; Precios · Monitoreo automático de ofertas en Chile. Los precios y disponibilidad son responsabilidad de cada tienda.</footer>
+
+<script>
+window.PAGE_DEFAULT_TAB = "limonada";
+const $ = id => document.getElementById(id),
+  clp = n => "$" + Math.round(n).toLocaleString("es-CL"),
+  esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const COLORS = ["#ff8a3d", "#4da3ff", "#6fe3a5", "#ff5d8f", "#b78cff", "#ffc857", "#20c997", "#fd7e14"];
+let TABS = [], currentTab = null, B = [], D = [], page = 1, store = -1, key = "descuento", dir = -1, maxD = 1;
+const tabCache = {};
+const tabPath = t => t.path || (t.html_file && t.html_file !== "index.html" ? "/" + t.html_file.replace(".html", "") : "/");
+const tabFromLocation = () => {
+  let p = location.pathname.replace("/index.html", "/").replace(".html", "");
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return TABS.find(t => tabPath(t) === p);
+};
+
+fetch("tabs.json", { cache: "no-cache" })
+  .then(r => { if (!r.ok) throw 0; return r.json(); })
+  .then(data => {
+    TABS = data.tabs || [];
+    renderTabsBar();
+    // Links viejos tipo /#abc: se llevan a la URL limpia /abc
+    const legacy = TABS.find(t => t.id === (location.hash || "").replace("#", "").trim());
+    const found = legacy || tabFromLocation();
+    const initialId = found ? found.id : (TABS.find(t => t.id === window.PAGE_DEFAULT_TAB) || TABS[0])?.id;
+    if (initialId) switchTab(initialId, false);
+    if (legacy) history.replaceState(null, "", tabPath(legacy));
+  })
+  .catch(() => {
+    // Fallback: intentar cargar libros.json directamente
+    fetch("libros.json", { cache: "no-cache" }).then(r => r.json()).then(j => {
+      initTabData({ id: "libros", name: "Libros", item_label: "Libro", headline: "Los mejores descuentos de libros en Chile", subtitle: "Librerías principales de Chile" }, j);
+    }).catch(() => {
+      $("upd").textContent = "sin datos";
+      $("body").innerHTML = `<tr><td colspan="8"><div class="msg">No pude leer los datos.<br><br>Genera las ofertas con <code>python3 script_generator.py</code>.</div></td></tr>`;
+    });
+  });
+
+function renderTabsBar() {
+  const nav = $("tabs-nav");
+  nav.innerHTML = TABS.map(t => `
+    <a class="tab-btn${currentTab && currentTab.id === t.id ? " active" : ""}" href="${tabPath(t)}" data-tab="${t.id}" id="tab-btn-${t.id}">
+      <span class="t-icon">${t.icon || "🏷️"}</span>
+      <span>${esc(t.name)}</span>
+      <span class="t-badge">${t.total || 0}</span>
+    </a>
+  `).join("");
+}
+
+$("tabs-nav").onclick = e => {
+  const btn = e.target.closest(".tab-btn");
+  if (!btn || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+  e.preventDefault();
+  const tid = btn.dataset.tab;
+  if (tid && !(currentTab && currentTab.id === tid)) switchTab(tid, true);
+};
+
+window.addEventListener("popstate", () => {
+  const t = tabFromLocation();
+  if (t && (!currentTab || currentTab.id !== t.id)) switchTab(t.id, false);
+});
+
+function switchTab(tabId, updateHash) {
+  const tab = TABS.find(t => t.id === tabId);
+  if (!tab) return;
+  currentTab = tab;
+  if (updateHash) {
+    history.pushState(null, "", tabPath(tab));
+  }
+  document.title = `${tab.name} | Monitor de Ofertas · Descuentos en Chile`;
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    const isAct = b.dataset.tab === tabId;
+    b.classList.toggle("active", isAct);
+    if (isAct) b.scrollIntoView({ behavior: "smooth", inline: "nearest", block: "nearest" });
+  });
+
+  // Actualizar hero y textos
+  $("hero-title").innerHTML = tab.headline || `Los mejores descuentos en ${esc(tab.name)}, <em>actualizados hoy.</em>`;
+  $("hero-desc").textContent = tab.subtitle || `Monitoreo de precios y descuentos en ${tab.name}.`;
+  $("col-item").dataset.l = tab.item_label || "Producto";
+  $("col-item").textContent = $("col-item").dataset.l;
+  $("q").placeholder = `Buscar en ${tab.name}...`;
+
+  if (tabCache[tabId]) {
+    initTabData(tab, tabCache[tabId]);
+  } else {
+    $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Cargando ofertas de ${esc(tab.name)}…</div></td></tr>`;
+    fetch(tab.file || `${tabId}.json`, { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(j => {
+        tabCache[tabId] = j;
+        initTabData(tab, j);
+      })
+      .catch(err => {
+        $("body").innerHTML = `<tr><td colspan="8"><div class="msg">Error al cargar datos de ${esc(tab.name)}.</div></td></tr>`;
+      });
+  }
+}
+
+const fixUrl = b => {
+  if (!b.url) return "";
+  if (/buscalibre/i.test(b.tienda) && !/^https?:/i.test(b.url)) {
+    return new URL(b.url, "https://www.buscalibre.cl/").href;
+  }
+  return b.url;
+};
+
+function initTabData(tab, j) {
+  D = j.dominios || [];
+  document.querySelector("table").classList.toggle("single", D.length < 2);
+  const items = j.items || j.libros || [];
+  B = items.map(b => ({ ...b, ahorro: (b.promedio || 0) - (b.precio || 0), url: fixUrl(b) }));
+  maxD = Math.max(...B.map(b => b.descuento || 0), 1);
+  if (j.generated_at) {
+    $("upd").textContent = "Actualizado " + new Date(j.generated_at).toLocaleString("es-CL", { dateStyle: "medium", timeStyle: "short" });
+  }
+  $("s1").firstChild.textContent = B.length;
+  $("s2").firstChild.textContent = D.length || 1;
+  $("s3").firstChild.textContent = Math.round(B.reduce((a, b) => a + (b.descuento || 0), 0) / Math.max(B.length, 1)) + "%";
+
+  // Chips de tiendas del tab
+  if (D.length > 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = [{ name: "Todas" }, ...D].map((d, i) =>
+      `<button class="chip${i ? "" : " on"}" data-i="${i ? d.id : -1}">${i ? `<i style="--c:${COLORS[(i - 1) % COLORS.length]}"></i>` : ""}${esc(d.name)}</button>`
+    ).join("");
+  } else if (D.length === 1) {
+    $("chips").style.display = "flex";
+    $("chips").innerHTML = `<button class="chip on" data-i="${D[0].id}"><i style="--c:${COLORS[0]}"></i>${esc(D[0].name)}</button>`;
+  } else {
+    $("chips").style.display = "none";
+    $("chips").innerHTML = "";
+  }
+
+  page = 1;
+  store = -1;
+  render();
+}
+
+const col = id => {
+  const idx = D.findIndex(d => d.id === id);
+  return COLORS[Math.max(idx, 0) % COLORS.length];
+};
+
+$("chips").onclick = e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  store = +b.dataset.i;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+  page = 1;
+  render();
+};
+
+["q", "min", "per"].forEach(id => $(id).addEventListener("input", () => { page = 1; render(); }));
+
+document.querySelector("thead").onclick = e => {
+  const h = e.target.closest("th[data-k]");
+  if (!h) return;
+  const k = h.dataset.k;
+  dir = key === k ? -dir : (k === "title" || k === "tienda" || k === "precio" || k === "promedio" ? 1 : -1);
+  key = k;
+  page = 1;
+  render();
+};
+
+// Mini gráfico del historial de precios (solo muestra la tendencia; el número que manda es el descuento).
+function spark(b) {
+  const h = b.hist;
+  if (!h || h.length < 2) return `<span class="o">—</span>`;
+  const min = Math.min(...h), max = Math.max(...h), rng = max - min, W = 130, H = 40, P = 4;
+  const pts = h.map((v, i) => `${(i / (h.length - 1) * W).toFixed(1)},${(rng === 0 ? H / 2 : H - P - (v - min) / rng * (H - 2 * P)).toFixed(1)}`).join(" ");
+  const c = "var(--dn)";
+  const tip = `Normal ${clp(b.promedio)} · mín ${clp(min)} · máx ${clp(max)} · ${h.length} registros`;
+  return `<div class="sp" title="${tip}"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><polygon points="${pts} ${W},${H} 0,${H}" fill="${c}" opacity=".13"/><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>`;
+}
+
+function render() {
+  const q = $("q").value.toLowerCase().trim(), m = +$("min").value, PER = +$("per").value;
+  const L = B.filter(b => (store < 0 || b.dominio_id === store) && b.descuento >= m && (!q || (b.title || "").toLowerCase().includes(q)));
+  L.sort((a, b) => (typeof a[key] === "string" ? a[key].localeCompare(b[key], "es") : a[key] - b[key]) * dir);
+  document.querySelectorAll("th[data-k]").forEach(h => {
+    h.dataset.l = h.dataset.l || h.textContent;
+    h.classList.toggle("s", h.dataset.k === key);
+    h.textContent = h.dataset.l + (h.dataset.k === key ? (dir > 0 ? " ↑" : " ↓") : "");
+  });
+  const pages = Math.max(1, Math.ceil(L.length / PER));
+  page = Math.min(page, pages);
+  const st = (page - 1) * PER;
+  $("count").innerHTML = `<b>${L.length}</b> ofertas · mostrando ${L.length ? st + 1 : 0}–${Math.min(st + PER, L.length)}`;
+
+  $("body").innerHTML = L.length ? L.slice(st, st + PER).map((b, i) => `<tr>
+    <td class="n">${st + i + 1}</td>
+    <td><div class="bk"><div class="mc">${b.thumbnail ? `<img src="${esc(b.thumbnail)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "📦"}</div><div class="t">${esc(b.title)}</div></div></td>
+    <td class="c-store"><span class="st" style="--c:${col(b.dominio_id)}"><i></i>${esc(b.tienda)}</span></td>
+    <td class="r p">${clp(b.precio)}</td>
+    <td><div class="d${b.descuento >= 45 ? " hot" : ""}"><b>−${Math.round(b.descuento)}%</b><span><i style="width:${b.descuento / maxD * 100}%"></i></span></div></td>
+    <td class="r sv">${clp(b.ahorro)}</td>
+    <td class="r">${spark(b)}</td>
+    <td class="r">${b.url ? `<a class="btn" href="${esc(b.url)}" target="_blank" rel="noopener" data-id="${b.id}" data-pos="${st + i + 1}">Ir a la tienda ↗</a>` : ""}</td>
+  </tr>`).join("") : `<tr><td colspan="8"><div class="msg">Nada por aquí… prueba otra búsqueda 🔍</div></td></tr>`;
+
+  const bt = (l, p, x = "") => `<button ${x} data-p="${p}">${l}</button>`, a = [bt("←", page - 1, page === 1 ? "disabled" : "")];
+  const set = [...new Set([1, 2, page - 1, page, page + 1, pages - 1, pages])].filter(x => x >= 1 && x <= pages).sort((x, y) => x - y);
+  set.forEach((x, i) => {
+    if (i && x - set[i - 1] > 1) a.push("<span>…</span>");
+    a.push(bt(x, x, x === page ? 'class="on"' : ""));
+  });
+  a.push(bt("→", page + 1, page === pages ? "disabled" : ""));
+  $("pager").innerHTML = a.join("");
+}
+
+$("pager").onclick = e => {
+  const b = e.target.closest("button");
+  if (!b || b.disabled) return;
+  page = +b.dataset.p;
+  render();
+  $("count").scrollIntoView({ behavior: "smooth" });
+};
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.btn[data-id]");
+  if (!a || typeof gtag !== "function") return;
+  const b = B.find(x => String(x.id) === a.dataset.id);
+  if (!b) return;
+  gtag("event", "select_item", {
+    item_list_name: currentTab ? currentTab.name : "Ofertas",
+    currency: "CLP",
+    items: [{ item_id: String(b.id), item_name: b.title, item_brand: b.tienda, price: Math.round(b.precio), discount: Math.round(b.ahorro), index: +a.dataset.pos }]
+  });
+});
+</script>
+</body>
+</html>
